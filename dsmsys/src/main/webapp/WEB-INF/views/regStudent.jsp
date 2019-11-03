@@ -6,9 +6,7 @@
 <head>
 <meta charset="utf-8">
 <style type="text/css">
-span.error {
-	color: red;
-}
+
 </style>
 <title>学员申请界面</title>
 </head>
