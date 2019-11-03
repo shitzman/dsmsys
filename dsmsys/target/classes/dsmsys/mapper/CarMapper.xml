@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dsmsys.dao.CarDao">
+	<select id="getCarByCId"  parameterType="String" resultType="Car">
+		select * from car where c_id=#{cId}
+	</select>
+	
+	<select id="getAllCar" resultType="Car">
+		select * from car 
+	</select>
+	
+</mapper>

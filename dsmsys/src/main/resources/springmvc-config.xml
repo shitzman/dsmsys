@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<context:component-scan base-package="dsmsys.controller"></context:component-scan>
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<mvc:annotation-driven/>
+	<mvc:default-servlet-handler/>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="#{1024*1024*10}"></property>
+		<property name="defaultEncoding" value="utf-8"></property>
+	</bean>
+	
+	<!--拦截器注册 -->
+	<mvc:interceptors>
+		<!--拦截器1 -->
+		<mvc:interceptor>
+			
+			<!--通配符  拦截子节点和孙节点 -->
+			<mvc:mapping path="/admin/**"/>
+			<!--在使用通配符的过程中 排除指定拦截 -->
+			<mvc:exclude-mapping path="/admin/login"/>
+			<bean class="dsmsys.intercepter.AdminIntercepter"></bean>
+		</mvc:interceptor>
+		
+	</mvc:interceptors>
+
+
+</beans>
