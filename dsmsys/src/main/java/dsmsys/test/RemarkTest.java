@@ -23,4 +23,6 @@ public class RemarkTest {
 		List<Remark> remarkList = remarkDao.getRemarkBySId(3);
 		System.out.println(remarkList);
 	}
+	
+	
 }

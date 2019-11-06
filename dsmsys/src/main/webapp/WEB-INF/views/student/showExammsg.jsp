@@ -19,7 +19,7 @@
 		<th>考试地址</th>
 		<th>可报考人数</th>
 		<th>已报考人数</th>
-		<th>预约</th>
+		<th>操作</th>
 	</tr>
 	<c:forEach var="exam" items="${examList }">
 		<tr>	
@@ -37,10 +37,14 @@
 					<td>你已成功提交申请，请耐心等待</td>
 				</c:when>
 				<c:when test="${sStatus ==2 }">
-					<td><a href = "#">你已成功预约考试，点击查看考试信息</a></td>
+					<td><a href = "#">你已成功预约编号为${eId}的考试，点击查看考试信息</a></td>
 				</c:when>
+				<c:when test="${sStatus ==3 }">
+					<td><a href = "${pageContext.request.contextPath }/addexamorder?eId=${exam.eId }">你的考试申请已被拒绝，点击重新申请</a></td>
+				</c:when>
+				
 				<c:otherwise>
-					<td><a href="#">你的考试申请已被拒绝，点击重新申请</a></td>
+					<td><a href="#">删除考试信息</a></td>
 				</c:otherwise>
 			</c:choose>
 			

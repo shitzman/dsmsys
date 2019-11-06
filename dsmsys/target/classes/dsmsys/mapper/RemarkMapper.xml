@@ -12,4 +12,8 @@
 		INSERT INTO remark (s_id,e_id,r_status,r_score,r_remark) 
 		VALUE(#{sId},#{eId},#{rStatus},#{rScore},#{rRemark})
 	</insert>
+	
+	<select id="selecteIdBysIdAndrStatus" parameterType="Integer" resultType="String">
+		SELECT e_id from remark WHERE s_id = #{sId} and r_status= #{rStatus}
+	</select>
 </mapper>

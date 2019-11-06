@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import dsmsys.pojo.Exammsg;
 import dsmsys.pojo.Student;
-import dsmsys.service.ExamOrderService;
 import dsmsys.service.ExammsgService;
+import dsmsys.service.RemarkService;
 
 @Controller
 @RequestMapping("exam")
@@ -23,7 +23,8 @@ public class ExamController {
 
 	@Autowired
 	ExammsgService exammsgService;
-	
+	@Autowired
+	RemarkService remarkService;
 	
 
 	
@@ -31,6 +32,10 @@ public class ExamController {
 	@RequestMapping(value="showexammsg", method=RequestMethod.GET)
 	public String showExammsg(HttpSession session,Model model){
 		Student student = (Student) session.getAttribute("student");
+		//查看当前学员有无约考记录(rstatus=0：未考)
+		String eId = remarkService.selecteIdBysIdAndrStatus(student.getsId(), 0);
+		model.addAttribute("eId", eId);
+		
 		String eTime = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		String eSubject = student.getsCurrent()+"";
 		//根据现在时间以及当前学员所属科目展示可约考信息
