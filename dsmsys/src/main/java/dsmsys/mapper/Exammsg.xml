@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dsmsys.dao.ExammsgDao">
+	<select id="getExammsgByENum"  parameterType="Integer" resultType="Exammsg">
+		select * from exammsg where e_id=#{eId}
+	</select>
+	
+	<insert id="insertExamMsg" parameterType="Exammsg">
+		INSERT INTO exammsg (e_time,e_subject,e_address,e_all_num,e_alr_num)
+		value(#{eTime},#{eSubject},#{eAddress},#{eAllNum},#{eAlrNum})
+	</insert>
+	
+	<select id="getAllExammsg" resultType="Exammsg">
+		select * from exammsg
+	</select>
+	
+	<select id="getAllExammsgByTime" parameterType="String" resultType="Exammsg">
+		SELECT * FROM exammsg WHERE e_time >= #{eTime}
+	</select>
+	
+	<select id="getAllExammsgByTimeAndSubject" parameterType="String" resultType="Exammsg">
+		SELECT * FROM exammsg WHERE e_time >= #{eTime} and e_subject = #{eSubject}
+	</select>
+	
+	<update id="updateExammsgByEIdAteAlrNum" parameterType="Integer">
+		UPDATE exammsg set e_alr_num = e_alr_num + #{addeAlrNum} WHERE e_id = #{eId}
+	</update>
+	
+</mapper>

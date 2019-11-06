@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="dsmsys.dao.StudentDao">
+	<select id="getStudentBySid"  parameterType="Integer" resultType="Student">
+		select * from student where s_id=#{sId}
+	</select>
+	
+	<select id="getAllStudent" resultType="Student">
+		select * from student
+	</select>
+	
+	<insert id="addStudent" parameterType="Student">
+		insert into student(s_number,s_name,s_sex,s_mobile,s_password,s_address,s_current,s_account,t_id,s_status) 
+		values(#{sNumber},#{sName},#{sSex},#{sMobile},#{sPassword},#{sAddress},#{sCurrent},#{sAccount},#{tId},#{sStatus})
+	</insert>
+	
+	<select id="getStudentByMobileAndPwd" parameterType="String" resultType="Student">
+		select * from student where s_mobile=#{sMobile} and s_password=#{sPassword}
+	</select>
+	
+	<select id="getAllStudentByAccount" resultType="Student">
+		select * from student where s_account=#{sAccount}
+	</select>
+	
+	<update id="ratifyStu" parameterType="Student">
+		UPDATE student SET s_account = #{sAccount}, s_current = #{sCurrent}, s_reg_time = #{sRegTime} WHERE s_id = #{sId}
+	</update>
+	
+	<select id="checkSMobile" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) from student WHERE s_mobile = #{sMobile}
+	</select>
+	
+	<update id="updateStatusBySId" parameterType="Integer">
+		UPDATE student set s_status=#{sStatus} WHERE s_id = #{sId}
+	</update>
+	
+</mapper>

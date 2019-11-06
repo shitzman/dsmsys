@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="dsmsys.dao.ExamOrderDao">
+	<select id="getAllOrder"  resultType="ExamOrder">
+		select * from examorder
+	</select>
+	<insert id="insertExamOrder" parameterType="Integer">
+		INSERT INTO examorder (e_num,s_id) VALUE(#{eNum},#{sId})
+	</insert>
+	<delete id="deleteExamOrderBySId" parameterType="Integer">
+		DELETE from examorder WHERE s_id = #{sId}
+	</delete>
+</mapper>
