@@ -141,7 +141,6 @@ public class StudentController {
 		// 初始化学员状态
 		student.setsCurrent(0);// 设置当前科目为0
 		student.setsAccount(0);// 设置当前账户状态为0（未经管理员审批，不可用）
-		student.settId(0);// 设置教练员id为0
 		student.setsStatus(0);// 设置当前考试状态为0
 		// 将学员信息写入数据库
 		if (studentService.addStudent(student) <= 0) {

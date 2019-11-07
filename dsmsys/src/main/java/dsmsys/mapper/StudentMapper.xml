@@ -14,8 +14,8 @@
 	</select>
 	
 	<insert id="addStudent" parameterType="Student">
-		insert into student(s_number,s_name,s_sex,s_mobile,s_password,s_address,s_current,s_account,t_id,s_status) 
-		values(#{sNumber},#{sName},#{sSex},#{sMobile},#{sPassword},#{sAddress},#{sCurrent},#{sAccount},#{tId},#{sStatus})
+		insert into student(s_number,s_name,s_sex,s_mobile,s_password,s_address,s_current,s_account,s_status) 
+		values(#{sNumber},#{sName},#{sSex},#{sMobile},#{sPassword},#{sAddress},#{sCurrent},#{sAccount},#{sStatus})
 	</insert>
 	
 	<select id="getStudentByMobileAndPwd" parameterType="String" resultType="Student">

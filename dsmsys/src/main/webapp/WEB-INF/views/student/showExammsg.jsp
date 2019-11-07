@@ -37,7 +37,7 @@
 					<td>你已成功提交申请，请耐心等待</td>
 				</c:when>
 				<c:when test="${sStatus ==2 }">
-					<td><a href = "#">你已成功预约编号为${eId}的考试，点击查看考试信息</a></td>
+					<td><a href = "${pageContext.request.contextPath }/showexamorder">你已成功预约编号为${eId}的考试，点击查看考试信息</a></td>
 				</c:when>
 				<c:when test="${sStatus ==3 }">
 					<td><a href = "${pageContext.request.contextPath }/addexamorder?eId=${exam.eId }">你的考试申请已被拒绝，点击重新申请</a></td>

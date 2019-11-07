@@ -102,8 +102,6 @@
 	
 	<tr>
 		<td>
-			<c:if test="${!empty student.sId }">
-			</c:if>
 		</td>
 	</tr>
 
