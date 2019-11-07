@@ -31,5 +31,10 @@ public class TeacherServiceImpl implements TeacherService {
 		// TODO Auto-generated method stub
 		return teacherDao.getAllTeacher();
 	}
+	@Override
+	public int delectTeacher(Integer tId) {
+		// TODO Auto-generated method stub
+		return teacherDao.delectTeacher(tId);
+	}
 
 }

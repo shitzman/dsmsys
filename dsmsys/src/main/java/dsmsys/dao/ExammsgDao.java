@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import dsmsys.pojo.Exammsg;
 
 public interface ExammsgDao {
-
+	//根据考试id获取考试信息
 	Exammsg getExammsgByENum(Integer eId);
 	
 	//添加考试信息
@@ -24,4 +24,7 @@ public interface ExammsgDao {
 
 	//修改考试信息表已报考人数
 	int updateExammsgByEIdAteAlrNum(@Param("eId")Integer eId,@Param("addeAlrNum")Integer addeAlrNum);
+
+	//根据考试id获取考试信息
+	Exammsg getExammsgByeId(Integer eId);
 }

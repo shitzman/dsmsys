@@ -28,4 +28,8 @@
 		UPDATE exammsg set e_alr_num = e_alr_num + #{addeAlrNum} WHERE e_id = #{eId}
 	</update>
 	
+	<select id="getExammsgByeId" parameterType="Integer" resultType="Exammsg">
+		select * from exammsg where e_id = #{eId}
+	</select>
+	
 </mapper>

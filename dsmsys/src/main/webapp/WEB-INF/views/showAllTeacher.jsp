@@ -19,26 +19,32 @@
 <body>
 <jsp:include page="head.jsp"/>
 <h3>教练列表</h3>
+<h4 style="color: red">${msg }</h4>
 <c:forEach var="teacher" items="${teacherList }">
 	<div class="t_list">
 		<table>
 			<tr>
-				<td colspan="2">
-					<img alt="教练图片" src="img/${teacher.tImg }" width="240" height="220">
+				<td colspan="4">
+					<img alt="教练图片" src="${pageContext.request.contextPath}/img/${teacher.tImg }" width="240" height="220">
 				</td>
 			</tr>	
 			<tr>
 				<td>姓名：</td>
 				<td>${teacher.tName }</td>
-			</tr>	
-			<tr>
 				<td>性别</td>
 				<td>${teacher.tSex }</td>
-			</tr>
+			</tr>	
 			<tr>
+				<td>编号:</td>
+				<td>${teacher.tId}</td>
 				<td>车牌号：</td>
 				<td>${teacher.cId }</td>
 			</tr>
+			<c:if test="${!empty sessionScope.admin }">
+				<tr>
+					<td><a href="${pageContext.request.contextPath}/admin/deleteteacher?tId=${teacher.tId}">删除该教练</a></td>
+				</tr>
+			</c:if>
 		</table>
 	</div>
 </c:forEach>

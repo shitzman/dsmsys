@@ -12,4 +12,7 @@ public interface TeacherDao {
 	
 	//查询所有教练
 	List<Teacher> getAllTeacher();
+	
+	//删除该教练
+	int delectTeacher(Integer tId);
 }

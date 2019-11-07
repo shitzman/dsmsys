@@ -44,4 +44,10 @@ public class ExammsgServiceImp implements ExammsgService {
 		return exammsgDao.getAllExammsgByTimeAndSubject(eTime, eSubject);
 	}
 
+	@Override
+	public Exammsg getExammsgByeId(Integer eId) {
+		// TODO Auto-generated method stub
+		return exammsgDao.getExammsgByeId(eId);
+	}
+
 }

@@ -15,4 +15,7 @@
 	<select id="getAllTeacher" resultType="Teacher">
 		select * from teacher 
 	</select>
+	<delete id="delectTeacher" parameterType="Integer">
+		delete from teacher where t_id = #{tId}
+	</delete>
 </mapper>

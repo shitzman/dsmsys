@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import dsmsys.pojo.Admin;
+import dsmsys.pojo.Exammsg;
 import dsmsys.pojo.Student;
 import dsmsys.service.AdminService;
+import dsmsys.service.ExammsgService;
+import dsmsys.service.RemarkService;
 import dsmsys.service.StudentService;
 
 @Controller
@@ -22,6 +25,25 @@ public class StudentController {
 	StudentService studentService;
 	@Autowired
 	AdminService adminService;
+	@Autowired
+	RemarkService remarkService;
+	@Autowired
+	ExammsgService exammsgService;
+	
+	//学员查询已预约考试信息
+	@RequestMapping(value="showexamorder", method=RequestMethod.GET)
+	public String showExamOrder(HttpSession session, Model model){
+		Student student = (Student) session.getAttribute("student");
+		String eId = remarkService.selecteIdBysIdAndrStatus(student.getsId(), 0);//已批准
+		model.addAttribute("msg", "你已成功报考以下考试，请认真准备考试");
+		if(eId == "" || eId == null){
+			model.addAttribute("msg", "你还未预约任何考试");
+			return "/student/showExamOrder";
+		}
+		Exammsg exammsg = exammsgService.getExammsgByeId(Integer.parseInt(eId));
+		model.addAttribute("exammsg", exammsg);
+		return "/student/showExamOrder";
+	}
 	
 	//学员预约考试
 	@RequestMapping(value = "addexamorder", method = RequestMethod.GET)

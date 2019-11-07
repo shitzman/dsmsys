@@ -22,4 +22,6 @@ Exammsg getExammsgByENum(Integer eId);
 	//按科目查询所有有效考试信息
 	List<Exammsg> getAllExammsgByTimeAndSubject(@Param("eTime")String eTime, @Param("eSubject")String eSubject);
 
+	//根据考试id获取考试信息
+	Exammsg getExammsgByeId(Integer eId);
 }

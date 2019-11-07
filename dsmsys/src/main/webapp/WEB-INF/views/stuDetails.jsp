@@ -102,7 +102,8 @@
 	
 	<tr>
 		<td>
-			<a href="${pageContext.request.contextPath}/exam/showexammsg">显示可预约考试信息</a>
+			<c:if test="${!empty student.sId }">
+			</c:if>
 		</td>
 	</tr>
 
