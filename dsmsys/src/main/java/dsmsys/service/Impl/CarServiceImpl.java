@@ -40,4 +40,10 @@ public class CarServiceImpl implements CarService {
 		return carDao.insertCar(car);
 	}
 
+	@Override
+	public int deleteCarByFlag(Integer cFlag) {
+		// TODO Auto-generated method stub
+		return carDao.deleteCarByFlag(cFlag);
+	}
+
 }

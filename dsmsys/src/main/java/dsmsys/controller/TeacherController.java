@@ -20,6 +20,7 @@ import dsmsys.service.TeacherService;
  * 对此控制器下的添加教练功能进行AdminIntercepter过滤验证
  */
 @Controller
+@RequestMapping("teacher")
 public class TeacherController {
 	
 	@Autowired
@@ -27,18 +28,30 @@ public class TeacherController {
 	@Autowired
 	CarService carService;
 	
+	
+	//删除教练信息
+	@RequestMapping(value="/deleteteacher", method=RequestMethod.GET)
+	public String deleteTeacher(Integer tId, Model model){
+		if(teacherService.delectTeacher(tId)>0){
+			model.addAttribute("msg","成功删除编号为["+tId+"]的教练");
+		}else{
+			model.addAttribute("msg", "删除信息失败！");
+		}
+		//返回所有教练界面并显示删除提示信息
+		List<Teacher> teacherList = teacherService.getAllTeacher();
+		model.addAttribute("teacherList", teacherList);
+		return "showAllTeacher";
+	}
+	
+	
 	//查询所有教练
-	@RequestMapping(value = "showallteacher", method = RequestMethod.GET)
+	@RequestMapping(value = "/showallteacher", method = RequestMethod.GET)
 	public String showAllTeacher(Model model) {
 		List<Teacher> teacherList = teacherService.getAllTeacher();
 		model.addAttribute("teacherList", teacherList);
 		return "showAllTeacher";
 	}
 	
-	@RequestMapping("/showt")    
-	public void teacherControllerTest(Integer tId) {
-		System.out.println(teacherService.getTeacherById(tId));
-	}
 	
 	@RequestMapping(value = "/addteacher", method = RequestMethod.GET)
 	public String toAddTeacher(Model model) {
@@ -82,7 +95,7 @@ public class TeacherController {
 		
 		teacherService.insertTeacher(teacher);
 		
-		return "redirect:/showallteacher";
+		return "redirect:showallteacher";
 		
 	}
 

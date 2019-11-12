@@ -23,6 +23,21 @@ public class CarController {
 	@Autowired
 	CarService carService;
 	
+	
+	//删除车辆信息
+	@RequestMapping(value="deletecar",method=RequestMethod.GET)
+	public String deleteCar(Integer cFlag, Model model){
+		if(carService.deleteCarByFlag(cFlag)>0){
+			model.addAttribute("msg","成功删除编号为["+cFlag+"]的车辆");
+		}else{
+			model.addAttribute("msg", "删除信息失败！");
+		}
+		List<Car> carList = carService.getAllCar();
+		model.addAttribute("carList", carList);
+		return "showAllCar";
+	}
+	
+	//添加车辆信息
 	@RequestMapping(value = "addcar", method = RequestMethod.POST)
 	public String  addCar(Car car,MultipartFile cImgFile,HttpSession session,Model model) {
 		if(cImgFile.isEmpty()) {

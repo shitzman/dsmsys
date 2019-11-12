@@ -15,5 +15,8 @@ public interface CarService {
 	
 	//添加车辆信息
 	int insertCar(Car car);
+	
+	//删除车辆信息
+	int deleteCarByFlag(Integer cFlag);
 
 }

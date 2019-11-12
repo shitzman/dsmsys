@@ -19,4 +19,8 @@
 		INSERT INTO car(c_id,c_img,c_status,c_remark)VALUE(#{cId},#{cImg},#{cStatus},#{cRemark})
 	</insert>
 	
+	<delete id="deleteCarByFlag" parameterType="Integer">
+		delete from car where c_flag = #{cFlag}
+	</delete>
+	
 </mapper>

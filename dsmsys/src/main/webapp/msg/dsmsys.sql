@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : sss
-Source Server Version : 50723
+Source Server         : localhost_3306
+Source Server Version : 50711
 Source Host           : localhost:3306
 Source Database       : dsmsys
 
 Target Server Type    : MYSQL
-Target Server Version : 50723
+Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2019-11-04 22:04:07
+Date: 2019-11-12 16:46:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,25 +37,20 @@ INSERT INTO `admin` VALUES ('1', '时', '123456789', '123456', '999');
 -- ----------------------------
 DROP TABLE IF EXISTS `car`;
 CREATE TABLE `car` (
-  `c_id` varchar(11) NOT NULL COMMENT '车牌号',
+  `c_flag` int(255) NOT NULL AUTO_INCREMENT COMMENT '车牌号',
+  `c_id` varchar(255) NOT NULL COMMENT '车牌号',
   `c_img` varchar(255) DEFAULT NULL,
   `c_status` int(255) DEFAULT NULL COMMENT '车辆状态(0:不可使用，1：可使用）',
   `c_remark` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`c_flag`,`c_id`),
+  KEY `c_flag` (`c_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of car
 -- ----------------------------
-INSERT INTO `car` VALUES ('ss', '500673031.jpg', '1', 'ss');
-INSERT INTO `car` VALUES ('sss', '500673031.jpg', '1', 'sss');
-INSERT INTO `car` VALUES ('test1', 'car.jpg', '1', 'test1');
-INSERT INTO `car` VALUES ('test2', '500214235.jpg', '1', 'test2');
-INSERT INTO `car` VALUES ('test3', '500743686.jpg', '1', 'test3');
-INSERT INTO `car` VALUES ('test4', '500743686.jpg', '1', 'test4');
-INSERT INTO `car` VALUES ('豫A9874', 'car.jpg', '1', '正常');
-INSERT INTO `car` VALUES ('豫N9512', 'car.jpg', '1', '正常');
-INSERT INTO `car` VALUES ('默认', 'car.jpg', '1', '默认');
+INSERT INTO `car` VALUES ('1', '京A8888', 'car.jpg', '1', '可用');
+INSERT INTO `car` VALUES ('3', '豫A6666', 'car.jpg', '1', '可用');
 
 -- ----------------------------
 -- Table structure for exammsg
@@ -165,14 +160,12 @@ CREATE TABLE `teacher` (
   `t_img` varchar(100) DEFAULT '' COMMENT '教练照片存储路径',
   PRIMARY KEY (`t_id`),
   KEY `teacher_car` (`c_id`),
-  CONSTRAINT `teacher_car` FOREIGN KEY (`c_id`) REFERENCES `car` (`c_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  CONSTRAINT `teacher_car` FOREIGN KEY (`c_id`) REFERENCES `car` (`c_id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES ('0', '默认', '默认', '默认', '0', 'teacher.jpg');
-INSERT INTO `teacher` VALUES ('1', '豫N9512', '张三', '男', '1', 'teacher.jpg');
-INSERT INTO `teacher` VALUES ('2', '豫A9874', '李四', '男', '2', 'teacher.jpg');
-INSERT INTO `teacher` VALUES ('11', '默认', 's', 's', '2', '400078845.jpg');
-INSERT INTO `teacher` VALUES ('12', '豫A9874', '嘻嘻', '是', '1', '278250.jpg');
+INSERT INTO `teacher` VALUES ('1', '京A8888', '张三', '男', '1', 'teacher.jpg');
+INSERT INTO `teacher` VALUES ('2', null, '李四', '男', '2', 'teacher.jpg');
+INSERT INTO `teacher` VALUES ('13', '豫A6666', '默认', '默认', '0', 'teacher.jpg');

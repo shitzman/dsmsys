@@ -18,22 +18,21 @@
 </style>
 </head>
 <body>
-
 <jsp:include page="head.jsp"/>
 <h3>教练列表</h3>
+<h4 style="color: red">${msg }</h4>
 <c:forEach var="car" items="${carList }">
 	<div class="c_list">
 		<table>
 			<tr>
-				<td colspan="2">
+				<td colspan="4">
 					<img alt="车辆图片" src="${pageContext.request.contextPath }/img/${car.cImg }" width="240" height="220">
 				</td>
 			</tr>	
 			<tr>
 				<td>车牌号：</td>
 				<td>${car.cId }</td>
-			</tr>
-			<tr>
+			
 				<td>车辆状态：</td>
 				<c:choose>
 					<c:when test="${car.cStatus == 1 }">
@@ -48,6 +47,11 @@
 				<td>备注：</td>
 				<td>${car.cRemark }</td>
 			</tr>
+			<c:if test="${!empty sessionScope.admin }">
+				<tr>
+					<td><a href="${pageContext.request.contextPath}/car/deletecar?cFlag=${car.cFlag}">删除该车辆</a></td>
+				</tr>
+			</c:if>
 		</table>
 	</div>
 </c:forEach>

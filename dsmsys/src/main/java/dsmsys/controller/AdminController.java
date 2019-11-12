@@ -13,10 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import dsmsys.pojo.Car;
 import dsmsys.pojo.Exammsg;
 import dsmsys.pojo.Student;
 import dsmsys.pojo.Teacher;
 import dsmsys.service.AdminService;
+import dsmsys.service.CarService;
 import dsmsys.service.ExamOrderService;
 import dsmsys.service.ExammsgService;
 import dsmsys.service.StudentService;
@@ -37,21 +39,10 @@ public class AdminController {
 	ExammsgService exammsgService;
 	@Autowired
 	TeacherService teacherService;
-	
-	//删除教练信息
-	@RequestMapping(value="deleteteacher", method=RequestMethod.GET)
-	public String deleteTeacher(Integer tId, Model model){
-		if(teacherService.delectTeacher(tId)>0){
-			model.addAttribute("msg","成功删除编号为["+tId+"]的教练");
-		}else{
-			model.addAttribute("msg", "删除信息失败！");
-		}
-		//返回所有教练界面并显示删除提示信息
-		List<Teacher> teacherList = teacherService.getAllTeacher();
-		model.addAttribute("teacherList", teacherList);
-		return "showAllTeacher";
-	}
-	
+	@Autowired
+	CarService carService;
+
+
 	//管理员审批学员预约考试（同意）
 	@RequestMapping(value = "ratifyexamyes", method = RequestMethod.GET)
 	public String ratifyExamYes(String sId,String eId,Model model) {

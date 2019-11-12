@@ -1,6 +1,7 @@
 package dsmsys.pojo;
 
 public class Car {
+	private Integer cFlag;
 	private String cId;
 	private String cImg;
 	private Integer cStatus;
@@ -30,10 +31,16 @@ public class Car {
 	public void setcRemark(String cRemark) {
 		this.cRemark = cRemark;
 	}
+	public Integer getcFlag() {
+		return cFlag;
+	}
+	public void setcFlag(Integer cFlag) {
+		this.cFlag = cFlag;
+	}
 	@Override
 	public String toString() {
-		return "Car [cId=" + cId + ", cImg=" + cImg + ", cStatus=" + cStatus + ", cRemark=" + cRemark + "]";
+		return "Car [cFlag=" + cFlag + ", cId=" + cId + ", cImg=" + cImg + ", cStatus=" + cStatus + ", cRemark="
+				+ cRemark + "]";
 	}
-	
 
 }

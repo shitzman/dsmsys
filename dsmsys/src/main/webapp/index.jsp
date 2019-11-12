@@ -11,7 +11,7 @@
 
 <a href="regstudent">学员申请</a>
 <a href="login">登录</a>
-<a href="${pageContext.request.contextPath }/showallteacher">查看学校教练情况</a>
+<a href="${pageContext.request.contextPath }/teacher/showallteacher">查看学校教练情况</a>
 <a href="${pageContext.request.contextPath }/car/showallcar">查看学校车辆情况</a>
 </body>
 </html>
