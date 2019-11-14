@@ -27,4 +27,7 @@ public interface StudentService {
 	
 	//学员约考
 	int addExamOrder(Integer sId,Integer sStatus,Integer eNum);
+	
+	//根据教练id获取学员信息
+	List<Student> getStudentByTId(Integer tId);
 }

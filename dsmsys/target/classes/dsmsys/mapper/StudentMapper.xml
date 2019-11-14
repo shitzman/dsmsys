@@ -38,4 +38,8 @@
 		UPDATE student set s_status=#{sStatus} WHERE s_id = #{sId}
 	</update>
 	
+	<select id="getStudentByTId" parameterType="Integer" resultType="Student">
+		SELECT * FROM student where t_id = #{tId}
+	</select>
+	
 </mapper>

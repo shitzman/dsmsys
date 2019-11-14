@@ -28,4 +28,7 @@ public interface StudentDao {
 	
 	//根据学员id改变学员考试状态
 	int updateStatusBySId(@Param("sId")Integer sId, @Param("sStatus")Integer sStatus);
+	
+	//根据教练id获取学员信息
+	List<Student> getStudentByTId(Integer tId);
 }

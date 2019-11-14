@@ -12,13 +12,21 @@
 	<jsp:include page="../head.jsp" />
 	<h3>学员申请列表</h3>
 	<table border="1">
+		<tr>
+			<th>姓名：</th>
+			<th>性别：</th>
+			<th>身份证号：</th>
+			<th>手机号：</th>
+			<th>住址：</th>
+			<th>操作</th>
+		</tr>
 		<c:forEach var="stu" items="${stuListAcc }">
 			<tr>
-				<td>姓名：${stu.sName }</td>
-				<td>性别：${stu.sSex }</td>
-				<td>身份证号：${stu.sNumber }</td>
-				<td>手机号：${stu.sMobile }</td>
-				<td>住址：${stu.sAddress }</td>
+				<td>${stu.sName }</td>
+				<td>${stu.sSex }</td>
+				<td>${stu.sNumber }</td>
+				<td>${stu.sMobile }</td>
+				<td>${stu.sAddress }</td>
 				<td><a href="${pageContext.request.contextPath }/admin/ratifystu?sId=${stu.sId }">批准入学</a></td>
 			</tr>
 		</c:forEach>

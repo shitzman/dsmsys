@@ -41,8 +41,10 @@
 				<td>${teacher.cId }</td>
 			</tr>
 			<c:if test="${!empty sessionScope.admin }">
+			
 				<tr>
-					<td><a href="${pageContext.request.contextPath}/teacher/deleteteacher?tId=${teacher.tId}">删除该教练</a></td>
+					<td colspan="2"><a href="${pageContext.request.contextPath}/admin/showstubyt?tId=${teacher.tId}">查询教练详情</a></td>
+					<td colspan="2"><a href="${pageContext.request.contextPath}/teacher/deleteteacher?tId=${teacher.tId}">删除该教练</a></td>
 				</tr>
 			</c:if>
 		</table>

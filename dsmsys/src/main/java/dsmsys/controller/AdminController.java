@@ -41,10 +41,22 @@ public class AdminController {
 	TeacherService teacherService;
 	@Autowired
 	CarService carService;
-
+	
+	//查询教练所带学员
+	@RequestMapping(value="/showstubyt",method=RequestMethod.GET)
+	public String getStudentByTId(Integer tId, Model model){
+		List<Student> stuList = studentService.getStudentByTId(tId);
+		Teacher teacher = teacherService.getTeacherById(tId);
+		Car car = carService.getCarByCId(teacher.getcId());
+		
+		model.addAttribute("stuList", stuList);
+		model.addAttribute("teacher", teacher);
+		model.addAttribute("car", car);
+		return "teacher/showStuByt";
+	}
 
 	//管理员审批学员预约考试（同意）
-	@RequestMapping(value = "ratifyexamyes", method = RequestMethod.GET)
+	@RequestMapping(value = "/ratifyexamyes", method = RequestMethod.GET)
 	public String ratifyExamYes(String sId,String eId,Model model) {
 		adminService.ratifyExamYes(Integer.parseInt(sId), Integer.parseInt(eId));
 		model.addAttribute("msg", "已批准该学员的申请");
@@ -60,7 +72,7 @@ public class AdminController {
 	}
 	
 	//发布考试信息
-	@RequestMapping(value="addexammsg", method=RequestMethod.POST)
+	@RequestMapping(value="/addexammsg", method=RequestMethod.POST)
 	public String addExammsg(Exammsg exammsg){
 		exammsg.seteAlrNum(0);//初始化已报考人数为0
 		exammsgService.insertExamMsg(exammsg);
@@ -69,14 +81,14 @@ public class AdminController {
 	}
 	
 	//导向添加考试信息界面
-	@RequestMapping(value="addexammsg", method=RequestMethod.GET)
+	@RequestMapping(value="/addexammsg", method=RequestMethod.GET)
 	public String toAddExammsg(){
 		
 		return "admin/addExammsg";
 	}
 	
 	//为管理员显示发布过的所有考试信息
-	@RequestMapping(value="showexammsg", method=RequestMethod.GET)
+	@RequestMapping(value="/showexammsg", method=RequestMethod.GET)
 	public String showExammsg(HttpSession session,Model model){
 		List<Exammsg> examList = exammsgService.getAllExammsg();
 		model.addAttribute("examList", examList);
