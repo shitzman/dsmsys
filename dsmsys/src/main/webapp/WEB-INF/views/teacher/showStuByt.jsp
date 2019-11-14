@@ -88,6 +88,7 @@
 </table>
 
 <h3>车辆信息：</h3>
+<h5 style="color: red">${msg }</h5>
 <table>
 	<tr>
 		<td>车牌号:</td>
@@ -98,7 +99,24 @@
 		<td>备注:</td>
 		<td>${car.cRemark }</td>
 	</tr>
+	<tr>
+	<form action="${pageContext.request.contextPath}/admin/linktandc" method="post">
+		<td style="color: red">添加、更改所属车辆：</td>
+		<input type="hidden" name = "tId" value="${teacher.tId }">
+		<td>
+			<select name="cId">
+				<c:forEach var="carId" items="${carIdList }">
+					<option value="${carId }">${carId }</option>
+				</c:forEach>
+			</select>
+		</td>
+		<td>
+			<input type="submit" value="确定">
+		</td>
+	</form>
+	</tr>
 </table>
+
 
 </body>
 </html>

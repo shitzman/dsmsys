@@ -42,13 +42,25 @@ public class AdminController {
 	@Autowired
 	CarService carService;
 	
+	//为教练添加或更改所属车辆
+	@RequestMapping(value="/linktandc", method=RequestMethod.POST)
+	public String linkTeahcerAndCar(String cId,Integer tId, Model model){
+	
+		teacherService.updateCIdByTId(cId, tId);
+		
+		
+		model.addAttribute("tId", tId);
+		return "redirect:showstubyt";
+	}
+	
 	//查询教练所带学员
 	@RequestMapping(value="/showstubyt",method=RequestMethod.GET)
 	public String getStudentByTId(Integer tId, Model model){
 		List<Student> stuList = studentService.getStudentByTId(tId);
 		Teacher teacher = teacherService.getTeacherById(tId);
 		Car car = carService.getCarByCId(teacher.getcId());
-		
+		List<String> carIdList = carService.getAllCarIdByStatus(1);//获取所有可用车牌号，用于前端选择
+		model.addAttribute("carIdList", carIdList);
 		model.addAttribute("stuList", stuList);
 		model.addAttribute("teacher", teacher);
 		model.addAttribute("car", car);

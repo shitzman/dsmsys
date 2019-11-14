@@ -18,4 +18,7 @@
 	<delete id="delectTeacher" parameterType="Integer">
 		delete from teacher where t_id = #{tId}
 	</delete>
+	<update id="updateCIdByTId">
+		UPDATE teacher set c_id = #{cId} where t_id = #{tId}
+	</update>
 </mapper>
