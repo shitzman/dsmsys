@@ -151,5 +151,11 @@ public class StudentController {
 		model.addAttribute("msg", "申请已提交，请耐心等待管理员审批");
 		return "stuDetails";
 	}
+	
+	//学员主页
+	@RequestMapping(value = "/studetails", method = RequestMethod.GET)
+	public String toStuDetails() {
+		return "stuDetails";
+	}
 
 }

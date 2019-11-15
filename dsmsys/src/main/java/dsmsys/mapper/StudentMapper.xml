@@ -42,4 +42,16 @@
 		SELECT * FROM student where t_id = #{tId}
 	</select>
 	
+	<update id="updatetIdBysId" parameterType="Integer">
+		UPDATE student set t_id =#{tId} WHERE s_id =${sId}
+	</update>
+	
+	<update id="updatesCurrentBysId" parameterType="Integer">
+		UPDATE student set s_current =#{sCurrent},s_ex_time=null  WHERE s_id =#{sId}
+	</update>
+	
+	<update id="updatesTimeBysId">
+		UPDATE student set s_ex_time = #{sExTime} WHERE s_id = #{sId}
+	</update>
+	
 </mapper>

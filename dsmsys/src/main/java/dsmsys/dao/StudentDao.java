@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import dsmsys.pojo.Remark;
 import dsmsys.pojo.Student;
 
 public interface StudentDao {
@@ -31,4 +32,14 @@ public interface StudentDao {
 	
 	//根据教练id获取学员信息
 	List<Student> getStudentByTId(Integer tId);
+	
+	//根据学员id修改学员所跟教练id
+	int updatetIdBysId(@Param("tId")Integer tId, @Param("sId")Integer sId);
+	
+	//根据学员id更新学员考试时时间
+	int updatesTimeBysId(@Param("sId")Integer sId, @Param("sExTime")String sExTime);
+	
+	//根据学员id更新学员所属科目并重置考试时间为null
+	int updatesCurrentBysId(@Param("sCurrent")Integer sCurrent, @Param("sId")Integer sId);
+
 }

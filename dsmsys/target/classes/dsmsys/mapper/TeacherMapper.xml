@@ -21,4 +21,7 @@
 	<update id="updateCIdByTId">
 		UPDATE teacher set c_id = #{cId} where t_id = #{tId}
 	</update>
+	<select id="getAllTeacherId" resultType="Integer">
+		select t_id from teacher 
+	</select>
 </mapper>

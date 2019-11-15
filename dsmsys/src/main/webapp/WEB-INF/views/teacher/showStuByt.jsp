@@ -14,6 +14,10 @@
 <h3>教练员详情信息：</h3>
 	<table>
 		<tr>
+			<td>编号：</td>
+			<td>${teacher.tId }</td>
+		</tr>
+		<tr>
 			<td>姓名：</td>
 			<td>${teacher.tName }</td>
 		</tr>

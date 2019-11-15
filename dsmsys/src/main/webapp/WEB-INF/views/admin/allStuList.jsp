@@ -18,7 +18,8 @@
 			<th>身份证号：</th>
 			<th>手机号：</th>
 			<th>住址：</th>
-			<th>分配教练：</th>
+			<th>当前分配教练：</th>
+			<th>重新分配教练：</th>
 			<th>操作</th>
 		</tr>
 		<c:forEach var="stu" items="${stuList }">
@@ -29,10 +30,18 @@
 				<td>${stu.sMobile }</td>
 				<td>${stu.sAddress }</td>
 				<td>${stu.tId}</td>
-				<td><a href="#">确定</a></td>
+				<form action="${pageContext.request.contextPath}/admin/linkstuandt" method="get">
+					<input type="hidden" name="sId" value="${stu.sId }">
+					<td>
+						<select name="tId">
+							<c:forEach var="tId" items="${tIdList }">
+							<option value="${tId }">${tId }</option>
+							</c:forEach>
+						</select>
+					</td>
+					<td><input type="submit" value="确定"></td>
+				</form>
 			</tr>
-			
-			
 		</c:forEach>
 	</table>
 

@@ -13,7 +13,7 @@
 	<a href="${pageContext.request.contextPath}">首页</a>
 	<c:choose>
 		<c:when test="${ !empty sessionScope.student }">
-			<span>欢迎您：${sessionScope.student.sName }</span>
+			<span><a href="${pageContext.request.contextPath}/studetails">欢迎您：${sessionScope.student.sName }</a></span>
 			<span><a href="${pageContext.request.contextPath}/stulogout">退出登录</a></span>
 			<a href="${pageContext.request.contextPath}/exam/showexammsg">显示可预约考试信息</a>
 			<a href="${pageContext.request.contextPath }/teacher/showallteacher">查看学校教练情况</a>
@@ -36,6 +36,7 @@
 			
 			<a href="${pageContext.request.contextPath }/teacher/showallteacher">查看学校教练情况</a>
 			<a href="${pageContext.request.contextPath }/car/showallcar">查看学校车辆情况</a>
+			<a href="${pageContext.request.contextPath }/admin/showeremark0">录入学员考试信息</a>
 		
 		</c:when>
 		

@@ -44,6 +44,7 @@
 			<!-- 拦截 查询考试信息功能路径 -->
 			<mvc:mapping path="/exam/**"/>
 			<mvc:mapping path="/showexamorder"/>
+			<mvc:mapping path="/studetails"/>
 			<bean class="dsmsys.intercepter.StudentIntercepter"></bean>
 		</mvc:interceptor>
 		

@@ -16,4 +16,34 @@
 	<select id="selecteIdBysIdAndrStatus" parameterType="Integer" resultType="String">
 		SELECT e_id from remark WHERE s_id = #{sId} and r_status= #{rStatus}
 	</select>
+	
+	<resultMap type="Remark" id="remarkLinkExammsgAndStudent">
+		<result property="eId" column="e_id"/>
+		<result property="sId" column="s_id"/>
+		<result property="rRemark" column="r_remark"/>
+		<result property="rScore" column="r_score"/>
+		<result property="rStatus" column="r_status"/>
+		<association property="exammsg" javaType="Exammsg">
+			<result property="eTime" column="e_time"/>
+			<result property="eSubject" column="e_subject"/>
+			<result property="eAddress" column="e_address"/>
+		</association>
+		<association property="student" javaType="Student">
+			<result property="sName" column="s_name"/>
+		</association>
+	
+	</resultMap>
+	
+	<select id="getRemarkByStatus" parameterType="Integer" resultMap="remarkLinkExammsgAndStudent">
+		select r.*,e.e_time,e.e_subject,e.e_address,s.s_name
+		from remark r, exammsg e,student s
+		where r.r_status = #{rStatus} and r.e_id = e.e_id and r.s_id = s.s_id
+	</select>
+	
+	<update id="updateScoreAndRemarkAndStatus" parameterType="Remark">
+		UPDATE remark set r_status =#{rStatus} ,r_score=#{rScore} ,r_remark=#{rRemark}
+		where s_id=#{sId} and e_id=#{eId} 
+	</update>
+	
+	
 </mapper>

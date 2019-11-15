@@ -30,4 +30,7 @@ public interface StudentService {
 	
 	//根据教练id获取学员信息
 	List<Student> getStudentByTId(Integer tId);
+	
+	//根据学员id修改学员所跟教练id
+	int updatetIdBysId(Integer tId, Integer sId);
 }

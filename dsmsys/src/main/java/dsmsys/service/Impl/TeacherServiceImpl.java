@@ -41,5 +41,10 @@ public class TeacherServiceImpl implements TeacherService {
 		// TODO Auto-generated method stub
 		return teacherDao.updateCIdByTId(cId, tId);
 	}
+	@Override
+	public List<Integer> getAllTeacherId() {
+		// TODO Auto-generated method stub
+		return teacherDao.getAllTeacherId();
+	}
 
 }

@@ -24,5 +24,11 @@ public class RemarkTest {
 		System.out.println(remarkList);
 	}
 	
+	@Test
+	public void getRemarkByStatusTest() {
+		List<Remark> reList = remarkDao.getRemarkByStatus(0);
+		System.out.println(reList);
+	}
+	
 	
 }

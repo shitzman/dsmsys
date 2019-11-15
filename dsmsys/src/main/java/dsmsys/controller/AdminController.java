@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import dsmsys.pojo.Car;
 import dsmsys.pojo.Exammsg;
+import dsmsys.pojo.Remark;
 import dsmsys.pojo.Student;
 import dsmsys.pojo.Teacher;
 import dsmsys.service.AdminService;
 import dsmsys.service.CarService;
 import dsmsys.service.ExamOrderService;
 import dsmsys.service.ExammsgService;
+import dsmsys.service.RemarkService;
 import dsmsys.service.StudentService;
 import dsmsys.service.TeacherService;
 
@@ -41,14 +43,67 @@ public class AdminController {
 	TeacherService teacherService;
 	@Autowired
 	CarService carService;
+	@Autowired
+	RemarkService remarkService;
+	
+	//录入学员考试记录
+	@RequestMapping(value = "updateremark", method = RequestMethod.POST)
+	public String updateRemark(Remark remark, Model model) {
+		
+		if(studentService.getStudentBySid(remark.getsId()).getsStatus()!=2) {
+			model.addAttribute("warnings", "请不要重复提交数据！");
+			return "admin/updateRemarkAfter";
+		}
+		
+		if(remark.getrScore()<90) {		//低于90分为不及格，将学员的当前考试记录设为2：挂科
+			remark.setrStatus(2);
+			adminService.changeRemarkAndStuFail(remark);//更新当前考试记录，并改变学员考试状态
+			Student student = studentService.getStudentBySid(remark.getsId());
+			model.addAttribute("msg", "该学员此次考试信息已录入系统，详情信息如下");
+			model.addAttribute("remark", remark);
+			model.addAttribute("student", student);
+			return "admin/updateRemarkAfter";
+		}
+		
+		remark.setrStatus(1);//否则将学员的当前考试记录设为1：过关
+		int sSubject = adminService.changeRemarkAndStuPass(remark);//返回值为更新后的学员所处科目
+		
+		//最后一关
+		if(sSubject>4) {	//如果学员当前所处科目大于4，则通知其来校拿证
+			Student stuEnd = studentService.getStudentBySid(remark.getsId());
+			model.addAttribute("msg", "学员已通过所有考试，快通知学员来拿证吧！");
+			model.addAttribute("stuEnd", stuEnd);			//标识
+			return "admin/updateRemarkAfter";
+		}
+		
+		//普通过关
+		Student stu = studentService.getStudentBySid(remark.getsId());
+		model.addAttribute("msg1", "该学员通过此次考试信息已录入系统，详情信息如下");
+		model.addAttribute("remark", remark);
+		model.addAttribute("stu", stu);				//标识
+		return "admin/updateRemarkAfter";
+	}
+	
+	//查询所有待考试状态的记录
+	@RequestMapping(value = "showeremark0", method = RequestMethod.GET)
+	public String showExamRemarkByStatus(Model model) {
+		List<Remark> reList = remarkService.getRemarkByStatus(0);//status=0,为待考状态
+		model.addAttribute("reList", reList);
+		return "admin/showExamRemarkByS0";
+	}
+	
+	//为学员分配教练
+	@RequestMapping(value = "linkstuandt", method = RequestMethod.GET)
+	public String linkStudentAndTeacher(Integer sId, Integer tId, Model model) {
+		studentService.updatetIdBysId(tId, sId);
+		return "redirect:showallstu";
+	}
 	
 	//为教练添加或更改所属车辆
 	@RequestMapping(value="/linktandc", method=RequestMethod.POST)
 	public String linkTeahcerAndCar(String cId,Integer tId, Model model){
 	
 		teacherService.updateCIdByTId(cId, tId);
-		
-		
 		model.addAttribute("tId", tId);
 		return "redirect:showstubyt";
 	}
@@ -145,7 +200,9 @@ public class AdminController {
 	public String showAllStu(Model model) {
 		
 		List<Student> stuList = studentService.getAllStudentByAccount(1);//account=1为已审核学员
+		List<Integer> tIdList = teacherService.getAllTeacherId();
 		model.addAttribute("stuList", stuList);
+		model.addAttribute("tIdList", tIdList);
 		return "admin/allStuList";
 	}
 	

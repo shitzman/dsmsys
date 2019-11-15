@@ -75,4 +75,10 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.getStudentByTId(tId);
 	}
 
+	@Override
+	public int updatetIdBysId(Integer tId, Integer sId) {
+		// TODO Auto-generated method stub
+		return studentDao.updatetIdBysId(tId, sId);
+	}
+
 }
