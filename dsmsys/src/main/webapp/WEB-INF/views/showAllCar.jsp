@@ -1,26 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>车辆列表</title>
-
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>carList</title>
+<link rel="stylesheet" href="../layui/css/layui.css">
 <style type="text/css">
-	.c_list{
-		border: solid 1px red;
-		margin: 5px;
-		height: 300px;
-		width: 300px;
-		display: inline-block;
-	}
+.c_list {
+	margin: 5px;
+	height: 330px;
+	width: 300px;
+	display: inline-block;
+	background-color: #d2d2d2;
+	margin: 20px;
+	padding: 5px;
+}
+
+table tr td{
+padding:5px;
+}
+
 </style>
 </head>
-<body>
 <jsp:include page="head.jsp"/>
-<h3>教练列表</h3>
-<h4 style="color: red">${msg }</h4>
+<body style="background-color: #F0F0F0">
+	<div class="layui-layui-fluid">
+		<div class="layui-row">
+			<h2 align="center">顶部区域</h2>
+			<h2 align="center">|</h2>
+			<h2 align="center">|</h2>
+			<h2 align="center">|</h2>
+		</div>
+
+		<div class="layui-row">
+			<div class="layui-col-md1">
+				<h4 align="center">车辆左侧栏</h4>
+			</div>
+			<div class="layui-col-md10 " style="background-color: #c2c2c2">
+				<h4 style="color: red">${msg }</h4>
 <c:forEach var="car" items="${carList }">
 	<div class="c_list">
 		<table>
@@ -49,12 +70,25 @@
 			</tr>
 			<c:if test="${!empty sessionScope.admin }">
 				<tr>
-					<td><a href="${pageContext.request.contextPath}/car/deletecar?cFlag=${car.cFlag}">删除该车辆</a></td>
+					<td colspan="2" align="center"></td>
+					<td colspan="2" align="center"><a href="${pageContext.request.contextPath}/car/deletecar?cFlag=${car.cFlag}" class="layui-btn layui-btn-sm layui-btn-danger">删除该车辆</a></td>
 				</tr>
 			</c:if>
 		</table>
 	</div>
 </c:forEach>
-
+</div>
+			<div class="layui-col-md1">
+				<h4 align="center">车辆右侧栏</h4>
+			</div>
+		</div>
+	</div>
+	
+<script src="../layui/layui.all.js"></script>
+<script>
+	;!function() {
+		var layer = layui.layer, form = layui.form, element = layui.element;
+	}();
+</script>
 </body>
 </html>

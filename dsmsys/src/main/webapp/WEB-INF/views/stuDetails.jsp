@@ -6,13 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>学员信息查看页</title>
+<link rel="stylesheet" href="../layui/css/layui.css">
+<style>
+	.stumsg{
+		width:500px;
+		height:300px;
+		margin:50px auto;
+	}
+
+</style>
 </head>
 <body>
 <jsp:include page="head.jsp"/>
+
+<div class="stumsg">
+<h4 align="center" style="color: red;">${msg }</h4>
 <h4>欢迎您：[ ${student.sName }]</h4>
-<h4>您的详情信息如下：</h4>
-<h4 style="color: red">${msg }</h4>
-<table>
+<table class="layui-table ">
 	
 	<tr>
 		<td>身份证号：</td>
@@ -89,22 +99,31 @@
 		</c:if>
 		</td>
 	</tr>
-	
 	<tr>
-	
-		<td>
-			<c:if test="${empty student.sId }">
-				<a href="${pageContext.request.contextPath}/login">去登录</a>
-			</c:if>
+		<c:if test="${!empty student }">
+			<td>
+				<a href="${pageContext.request.contextPath}/exam/showexammsg" class="layui-btn layui-btn-radius layui-btn-normal">可预约考试信息</a>
+			</td>
+			
+			<td>
+				<a href="${pageContext.request.contextPath }/showexamorder" class="layui-btn layui-btn-radius layui-btn-normal">已预约考试信息</a>
+			</td>
 		
-		</td>
+		</c:if>
+	
 	</tr>
 	
 	<tr>
-		<td>
-		</td>
+		<c:if test="${empty student.sId }">
+			<td>
+				<a href="${pageContext.request.contextPath}/login" 	class="layui-btn layui-btn-radius layui-btn-normal">去登录</a>
+			</td>
+		</c:if>
 	</tr>
-
+	
 </table>
+
+</div>
+
 </body>
 </html>
