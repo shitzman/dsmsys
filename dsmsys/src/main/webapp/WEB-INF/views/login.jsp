@@ -5,25 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <title>登录页面</title>
+<style type="text/css">
+	.mainblock{
+		width: 500px;
+		height: 300px;
+		margin: 100px auto;
+		padding-top: 70px;
+	}
+
+</style>
 </head>
 <body style="background-color:#F0F0F0">
 <jsp:include page="head.jsp"/>
-<h5 style="color: red">${msg }</h5>
 
-<div class="layui-layui-fluid">   
-<div class="layui-row">
-	<h2 align="center">顶部区域</h2>
-	<h2 align="center">|</h2>
-	<h2 align="center">|</h2>
-	<h2 align="center">|</h2>
-</div>
 
-<div class="layui-row">
-	<div class="layui-col-md3">
-		<h4 align="center">左侧栏</h4>
-	</div>
-	<div class="layui-col-md6 " style="background-color:#c2c2c2">
-	<form action="${pageContext.request.contextPath}/login" method="post" class="layui-form" style="margin:80px auto">
+<div class="mainblock" style="background-color:#c2c2c2">
+	<h4 align="center" style="color: red">${msg }</h4>
+	
+	<form action="${pageContext.request.contextPath}/login" method="post" class="layui-form" style="margin:0 auto">
 	
 	
 		<div class="layui-form-item">
@@ -54,12 +53,9 @@
 		</div>
 
 	</form>
-	</div>
-	<div class="layui-col-md3">
-		<h4 align="center">右侧栏</h4>
-	</div>
 </div>
-</div>
+
+
 <script src="layui/layui.all.js" charset="utf-8"></script>
 <script>
 ;!function(){

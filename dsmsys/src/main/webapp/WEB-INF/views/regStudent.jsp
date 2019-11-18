@@ -8,6 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="layui/css/layui.css">
 <style type="text/css">
+	.mainblock{
+		width: 500px;
+		height: 400px;
+		margin: 100px auto;
+		padding-top: 20px;
+	}
 
 </style>
 <title>学员申请界面</title>
@@ -16,20 +22,9 @@
 	<jsp:include page="head.jsp"></jsp:include>
 	<h4 style="color: red">${msg }</h4>
 
-<div class="layui-layui-fluid">   
-<div class="layui-row">
-	<h2 align="center">顶部区域</h2>
-	<h2 align="center">|</h2>
-	<h2 align="center">|</h2>
-	<h2 align="center">|</h2>
-</div>
-
-<div class="layui-row">
-	<div class="layui-col-md3">
-		<h4 align="center">左侧栏</h4>
-	</div>
-	<div class="layui-col-md6 " style="background-color:#c2c2c2">
-		<form action="adduser" method="post" class="layui-form" style="margin:80px auto">
+<div class="mainblock" style="background-color:#c2c2c2">
+	<h4 align="center" style="color: red">${msg }</h4>
+		<form action="adduser" method="post" class="layui-form" style="margin:0px auto">
 			
 				<div class = "layui-form-item">
 					<label class="layui-form-label">身份证号：</label>
@@ -82,12 +77,9 @@
 				</div>
 
 		</form>
-	</div>
-	<div class="layui-col-md3">
-		<h4 align="center">右侧栏</h4>
-	</div>
 </div>
-</div>
+
+
 
 
 <script src="layui/layui.all.js" charset="utf-8"></script>

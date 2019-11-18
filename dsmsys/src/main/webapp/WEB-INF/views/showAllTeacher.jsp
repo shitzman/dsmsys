@@ -20,6 +20,11 @@
 	padding: 5px;
 }
 
+.mianList{
+		width:1080px;
+		margin:100px auto;
+	}
+
 table tr td{
 padding:5px;
 }
@@ -28,20 +33,10 @@ padding:5px;
 </head>
 <jsp:include page="head.jsp"/>
 <body style="background-color: #F0F0F0">
-	<div class="layui-layui-fluid">
-		<div class="layui-row">
-			<h2 align="center">顶部区域</h2>
-			<h2 align="center">|</h2>
-			<h2 align="center">|</h2>
-			<h2 align="center">|</h2>
-		</div>
 
-		<div class="layui-row">
-			<div class="layui-col-md1">
-				<h4 align="center">教练左侧栏</h4>
-			</div>
-			<div class="layui-col-md10 " style="background-color: #c2c2c2">
-				<h4 style="color: red">${msg }</h4>
+<div class="mianList" style="background-color: #c2c2c2">
+				<h4 align="center" style="color: red">${msg }</h4>
+				<h3 align="center">教练列表</h3>
 				<c:forEach var="teacher" items="${teacherList }">
 					<div class="t_list">
 						<table>
@@ -75,12 +70,8 @@ padding:5px;
 						</table>
 					</div>
 				</c:forEach>
-			</div>
-			<div class="layui-col-md1">
-				<h4 align="center">教练右侧栏</h4>
-			</div>
-		</div>
-	</div>
+</div>
+
 	
 <script src="../layui/layui.all.js"></script>
 <script>

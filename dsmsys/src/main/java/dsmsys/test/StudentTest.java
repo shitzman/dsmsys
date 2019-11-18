@@ -41,8 +41,10 @@ public class StudentTest {
 	
 	@Test
 	public void getAllStudentByAccountTest() {
-		List<Student> stuList = studentDao.getAllStudentByAccount(0);
-		System.out.println(stuList);
+		List<Student> stuList = studentDao.getAllStudentByAccount(1);
+		for(Student stu : stuList) {
+			System.out.println(stu);
+		}
 	}
 	
 	@Test
@@ -54,7 +56,10 @@ public class StudentTest {
 	@Test
 	public void getAllStudentTest() {
 		List<Student> stuList = studentDao.getAllStudent();
-		System.out.println(stuList);
+		for(Student stu : stuList) {
+			System.out.println(stu.gettIdList());
+		}
+		
 	}
 	
 	@Test

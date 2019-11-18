@@ -6,26 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>所有学员列表</title>
-
 <link rel="stylesheet" href="../layui/css/layui.css">
+
+<style type="text/css">
+
+	.mianList{
+		width:900px;
+		height:600px;
+		margin:100px auto;
+	}
+</style>
 </head>
 <body>
 <jsp:include page="../head.jsp"/>
 
-<div class="layui-layui-fluid">
-		<div class="layui-row">
-			<h2 align="center">所有学员列表顶部区域</h2>
-			<h2 align="center">|</h2>
-			<h2 align="center">|</h2>
-			<h2 align="center">|</h2>
-		</div>
-		
-		<div class="layui-row">
-			<div class="layui-col-md1">
-				<h4 align="center">所有学员列表左侧栏</h4>
-			</div>
-			
-		<div class="layui-col-md10 " style="background-color: #c2c2c2">
+<div class="mianList">
+	<h4 align="center">${msg }</h4>
+	<h3 align="center">所有在校学员列表</h3>
 	<table class="layui-table">
 		<tr>
 			<th>姓名：</th>
@@ -33,8 +30,9 @@
 			<th>身份证号：</th>
 			<th>手机号：</th>
 			<th>住址：</th>
+			<th>当前科目</th>
 			<th>当前分配教练：</th>
-			<th>重新分配教练：</th>
+			<th>学员可分配教练编号：</th>
 			<th>操作</th>
 		</tr>
 		<c:forEach var="stu" items="${stuList }">
@@ -44,12 +42,33 @@
 				<td>${stu.sNumber }</td>
 				<td>${stu.sMobile }</td>
 				<td>${stu.sAddress }</td>
+				<td>
+					<c:choose>
+						<c:when test="${stu.sCurrent ==1 }">
+							科目一
+						</c:when>
+						<c:when test="${stu.sCurrent ==2 }">
+							科目二
+						</c:when>
+						<c:when test="${stu.sCurrent ==3 }">
+							科目三
+						</c:when>
+						<c:when test="${stu.sCurrent ==4 }">
+							科目四
+						</c:when>
+						<c:otherwise>
+							等待管理员审批
+						</c:otherwise>
+					</c:choose>
+				
+				
+				</td>
 				<td>${stu.tId}</td>
 				<form action="${pageContext.request.contextPath}/admin/linkstuandt" method="get">
 					<input type="hidden" name="sId" value="${stu.sId }">
 					<td>
 						<select name="tId">
-							<c:forEach var="tId" items="${tIdList }">
+							<c:forEach var="tId" items="${stu.tIdList }">
 							<option value="${tId }">${tId }</option>
 							</c:forEach>
 						</select>
@@ -59,17 +78,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
-		</div>
-			<div class="layui-col-md1">
-				<h4 align="center">所有学员列表右侧栏</h4>
-			</div>
-		</div>
-	</div>
-<div>
-	<h1 align="center">|</h1>
-	<h1 align="center">占个位</h1>
-	<h1 align="center">|</h1>
+
 	
 </div>
 

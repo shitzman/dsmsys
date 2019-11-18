@@ -1,5 +1,7 @@
 package dsmsys.pojo;
 
+import java.util.List;
+
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
@@ -26,6 +28,8 @@ public class Student {
 	private String sRegTime;
 	private String sExTime;
 	private String sAddress;
+	
+	private List<Integer> tIdList;//存储学员当前科目可选择教练列表
 
 	
 	public Integer getsId() {
@@ -158,14 +162,23 @@ public class Student {
 	}
 
 
+	public List<Integer> gettIdList() {
+		return tIdList;
+	}
+
+
+	public void settIdList(List<Integer> tIdList) {
+		this.tIdList = tIdList;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Student [sId=" + sId + ", sNumber=" + sNumber + ", sName=" + sName + ", sSex=" + sSex + ", tId=" + tId
 				+ ", sMobile=" + sMobile + ", sCurrent=" + sCurrent + ", sAccount=" + sAccount + ", sPassword="
 				+ sPassword + ", sStatus=" + sStatus + ", sRegTime=" + sRegTime + ", sExTime=" + sExTime + ", sAddress="
-				+ sAddress + "]";
+				+ sAddress + ", tIdList=" + tIdList + "]";
 	}
-	
 	
 
 }

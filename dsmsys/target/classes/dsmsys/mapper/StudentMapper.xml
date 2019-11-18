@@ -9,8 +9,38 @@
 		select * from student where s_id=#{sId}
 	</select>
 	
-	<select id="getAllStudent" resultType="Student">
-		select * from student
+	<resultMap type="Student" id="stulinktidmap">
+		<result property="sId" column="s_id"/>
+		<result property="sNumber" column="s_number"/>
+		<result property="sName" column="s_name"/>
+		<result property="sSex" column="s_sex"/>
+		<result property="tId" column="t_id"/> 
+		<result property="sMobile" column="s_mobile"/>
+		<result property="sCurrent" column="s_current"/>
+		<result property="sAccount" column="s_account"/>
+		<result property="sPassword" column="s_password"/>
+		<result property="sStatus" column="s_status"/>
+		<result property="sRegTime" column="s_regTime"/>
+		<result property="sExTime" column="s_exTime"/>
+		<result property="sAddress" column="s_address"/>
+		<!-- 绑定当前学员可选择教练 -->
+		<collection property="tIdList" ofType="Integer" javaType="List">
+			<result property="tIdList" column="ttid"></result>
+		</collection>
+	
+	</resultMap>
+	
+	<select id="getAllStudent" resultMap="stulinktidmap">
+		select s.*,t.t_id as ttid
+		from student s, teacher t
+		where s.s_current = t.t_subject
+	</select>
+	
+		
+	<select id="getAllStudentByAccount" resultMap="stulinktidmap">
+		select s.*,t.t_id as ttid
+		from student s, teacher t
+		where s_account=#{sAccount} and s.s_current = t.t_subject
 	</select>
 	
 	<insert id="addStudent" parameterType="Student">
@@ -21,10 +51,7 @@
 	<select id="getStudentByMobileAndPwd" parameterType="String" resultType="Student">
 		select * from student where s_mobile=#{sMobile} and s_password=#{sPassword}
 	</select>
-	
-	<select id="getAllStudentByAccount" resultType="Student">
-		select * from student where s_account=#{sAccount}
-	</select>
+
 	
 	<update id="ratifyStu" parameterType="Student">
 		UPDATE student SET s_account = #{sAccount}, s_current = #{sCurrent}, s_reg_time = #{sRegTime} WHERE s_id = #{sId}

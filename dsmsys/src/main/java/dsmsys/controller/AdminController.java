@@ -46,6 +46,7 @@ public class AdminController {
 	@Autowired
 	RemarkService remarkService;
 	
+	
 	//录入学员考试记录
 	@RequestMapping(value = "updateremark", method = RequestMethod.POST)
 	public String updateRemark(Remark remark, Model model) {
@@ -108,7 +109,7 @@ public class AdminController {
 		return "redirect:showstubyt";
 	}
 	
-	//查询教练所带学员
+	//查询教练所带学员，教练详情
 	@RequestMapping(value="/showstubyt",method=RequestMethod.GET)
 	public String getStudentByTId(Integer tId, Model model){
 		List<Student> stuList = studentService.getStudentByTId(tId);
@@ -200,9 +201,9 @@ public class AdminController {
 	public String showAllStu(Model model) {
 		
 		List<Student> stuList = studentService.getAllStudentByAccount(1);//account=1为已审核学员
-		List<Integer> tIdList = teacherService.getAllTeacherId();
-		model.addAttribute("stuList", stuList);
-		model.addAttribute("tIdList", tIdList);
+		//List<Integer> tIdList = teacherService.getAllTeacherId();
+		model.addAttribute("stuList", stuList);//已在Studnet中绑定学员当前科目可选择教练列表
+		//model.addAttribute("tIdList", tIdList);
 		return "admin/allStuList";
 	}
 	
