@@ -2,6 +2,8 @@ package dsmsys.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import dsmsys.pojo.Car;
 
 public interface CarDao {
@@ -18,6 +20,9 @@ public interface CarDao {
 	
 	//删除车辆信息
 	int deleteCarByFlag(Integer cFlag);
+	
+	//更新车辆信息
+	int updatecStatusAndcRemarkBycFlag(Car car);
 
 	
 }

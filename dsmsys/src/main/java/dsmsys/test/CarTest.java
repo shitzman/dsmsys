@@ -19,6 +19,17 @@ public class CarTest {
 	CarDao carDao;
 	
 	@Test
+	public void updatecStatusAndcRemarkBycFlagTest() {
+		Car car = new Car();
+		car.setcFlag(1);
+		car.setcRemark("²âÊÔ");
+		int i = carDao.updatecStatusAndcRemarkBycFlag(car);
+		if(i>0) {
+			System.out.println("ÐÞ¸Ä³É¹¦");
+		}
+	}
+	
+	@Test
 	public void insertCarTest() {
 		Car car = new Car();
 		car.setcId("test1");

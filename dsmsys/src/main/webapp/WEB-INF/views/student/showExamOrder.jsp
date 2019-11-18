@@ -20,7 +20,7 @@
 <div class="exammsg">
 	<h4 align="center" style="color: red;">${msg }</h4>
 	<c:if test="${!empty exammsg }">
-		<table border="1">
+		<table class="layui-table">
 			<tr>
 				<td>考试编号</td>
 				<td>${exammsg.eId }</td>

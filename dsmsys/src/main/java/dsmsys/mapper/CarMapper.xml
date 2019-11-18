@@ -23,4 +23,8 @@
 		delete from car where c_flag = #{cFlag}
 	</delete>
 	
+	<update id="updatecStatusAndcRemarkBycFlag" parameterType="Car">
+		update car set c_status =#{cStatus} ,c_remark =#{cRemark} WHERE c_flag = #{cFlag}
+	</update>
+	
 </mapper>

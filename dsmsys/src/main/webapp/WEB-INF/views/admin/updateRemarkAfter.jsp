@@ -6,14 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>录入结果</title>
+<link rel="stylesheet" href="../layui/css/layui.css">
+<style>
+	.exammsg{
+		width:600px;
+		margin:50px auto;
+	}
+
+</style>
 </head>
 <body>
 <jsp:include page="../head.jsp"/>
+
+<div class="exammsg">
 <h1 style="color: red">${warnings }</h1>
 <c:choose>
 	<c:when test="${!empty stuEnd }">
 		<h2 style="color: red">${msg }</h2>
-		<table>
+		<table class="layui-table ">
 			<tr><td>姓名：</td><td>${stuEnd.sName }</td></tr>
 			<tr><td>身份证号：</td><td>${stuEnd.sNumber }</td></tr>
 			<tr><td>手机号</td><td>${stuEnd.sMobile }</td></tr>
@@ -23,7 +33,7 @@
 	
 	<c:when test="${!empty stu }">
 		<h4 style="color: red">${msg1 }</h4>
-		<table>
+		<table class="layui-table ">
 			<tr><td>姓名：</td><td>${stu.sName }</td></tr>
 			<tr><td>身份证号：</td><td>${stu.sNumber }</td></tr>
 			<tr><td>手机号</td><td>${stu.sMobile }</td></tr>
@@ -54,7 +64,7 @@
 	
 	<c:otherwise>
 		<h4 style="color: red">${msg }</h4>
-		<table>
+		<table class="layui-table ">
 			<tr>
 				<td>学员编号：</td>
 				<td>${student.sId }</td>
@@ -80,5 +90,7 @@
 	</c:otherwise>
 
 </c:choose>
+
+</div>
 </body>
 </html>

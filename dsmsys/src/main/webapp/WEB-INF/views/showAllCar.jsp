@@ -66,7 +66,7 @@ padding:5px;
 			</tr>
 			<c:if test="${!empty sessionScope.admin }">
 				<tr>
-					<td colspan="2" align="center"></td>
+					<td colspan="2" align="center"><a href="${pageContext.request.contextPath}/admin/toupdatecarstatus?cFlag=${car.cFlag}" class="layui-btn layui-btn-sm">修改车辆信息</a> </td>
 					<td colspan="2" align="center"><a href="${pageContext.request.contextPath}/car/deletecar?cFlag=${car.cFlag}" class="layui-btn layui-btn-sm layui-btn-danger">删除该车辆</a></td>
 				</tr>
 			</c:if>

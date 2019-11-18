@@ -64,16 +64,17 @@
 				
 				</td>
 				<td>${stu.tId}</td>
-				<form action="${pageContext.request.contextPath}/admin/linkstuandt" method="get">
+				<form action="${pageContext.request.contextPath}/admin/linkstuandt" method="get" class="layui-form">
 					<input type="hidden" name="sId" value="${stu.sId }">
-					<td>
-						<select name="tId">
+					
+					<td> 
+						<select name="tId" >
 							<c:forEach var="tId" items="${stu.tIdList }">
 							<option value="${tId }">${tId }</option>
 							</c:forEach>
 						</select>
 					</td>
-					<td><input type="submit" value="确定"></td>
+					<td><input type="submit" value="确定" class="layui-btn layui-btn-sm"></td>
 				</form>
 			</tr>
 		</c:forEach>

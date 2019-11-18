@@ -46,6 +46,25 @@ public class AdminController {
 	@Autowired
 	RemarkService remarkService;
 	
+	//修改车辆信息（是否可用状态码，与备注信息）
+	@RequestMapping(value = "toupdatecarstatus", method = RequestMethod.GET)
+	public String toUpdateCarStatus(String cFlag,Model model) {
+		model.addAttribute("cFlag", cFlag);
+		return "admin/updateCarStatus";
+	}
+	
+	@RequestMapping(value = "updatecarstatus", method = RequestMethod.POST)
+	public String updateCarStatus(Car car, Model model) {
+		if(carService.updatecStatusAndcRemarkBycFlag(car)>0) {
+			model.addAttribute("msg", "修改成功车辆信息【"+car.getcFlag()+"】成功");
+		}else {
+			model.addAttribute("msg", "修改成功车辆信息【"+car.getcFlag()+"】失败");
+		}
+		List<Car> carList = carService.getAllCar();
+		model.addAttribute("carList", carList);
+		return "showAllCar";
+	}
+	
 	
 	//录入学员考试记录
 	@RequestMapping(value = "updateremark", method = RequestMethod.POST)

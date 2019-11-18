@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../head.jsp"/>
 ${msg }
 <a href="${pageContext.request.contextPath }/admin/showexamorder">返回学员考试申请列表</a>
 </body>

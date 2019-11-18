@@ -5,14 +5,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>教练名下学员</title>
+<title>教练详情</title>
+<link rel="stylesheet" href="../layui/css/layui.css">
+<style>
+	.tmsg{
+		width:800px;
+		height:300px;
+		margin:50px auto;
+	}
+
+</style>
 </head>
 <body>
 <jsp:include page="../head.jsp"/>
 
-<div>
-<h3>教练员详情信息：</h3>
-	<table>
+<div class="tmsg">
+	<table class="layui-table">
+		<tr>
+			<td colspan="2" align="center" > <span class="layui-badge-dot"></span> 教练员详情信息：</td>
+		</tr>
 		<tr>
 			<td>编号：</td>
 			<td>${teacher.tId }</td>
@@ -48,10 +59,47 @@
 				</c:choose>
 			</td>
 		</tr>
-	</table>
-</div>
+
+	<tr>
+		<td colspan="2" align="center"> <span class="layui-badge-dot"></span> 车辆信息：${msg }</td>
+	</tr>
+	<tr>
+		<td>车牌号:</td>
+		<td>${car.cId }</td>
+	</tr>
+	
+	<tr>
+		<td>备注:</td>
+		<td>${car.cRemark }</td>
+	</tr>
+	<tr>
+	<tr>
+		<td style="color: red" colspan="2" align="center">添加、更改所属车辆：</td>
+	</tr>
+	<tr>
+		<form action="${pageContext.request.contextPath}/admin/linktandc" method="post" class="layui-form">
+		
+			<input type="hidden" name = "tId" value="${teacher.tId }">
+			<div>
+			<td class="layui-input-block">
+				<select name="cId" lay-verify="required">
+					<c:forEach var="carId" items="${carIdList }">
+						<option value="${carId }">${carId }</option>
+					</c:forEach>
+				</select>
+				
+				
+			</td>
+			
+			<td>
+				<input type="submit" value="确定" 	class="layui-btn layui-btn-sm layui-btn-danger">
+			</td>
+		</form>
+	</tr>
+</table>
+
 <h3>所带学员信息：</h3>
-<table border="1">
+<table class="layui-table">
 
 	<tr>
 		<th>姓名</th>
@@ -87,40 +135,22 @@
 					</c:when>
 				</c:choose>
 			</td>
+			<td>
+				<a href="#" class="layui-btn layui-btn-sm layui-btn-danger">解除关系</a>
+			</td>
 		</tr>
 	</c:forEach>
 </table>
 
-<h3>车辆信息：</h3>
-<h5 style="color: red">${msg }</h5>
-<table>
-	<tr>
-		<td>车牌号:</td>
-		<td>${car.cId }</td>
-	</tr>
-	
-	<tr>
-		<td>备注:</td>
-		<td>${car.cRemark }</td>
-	</tr>
-	<tr>
-	<form action="${pageContext.request.contextPath}/admin/linktandc" method="post">
-		<td style="color: red">添加、更改所属车辆：</td>
-		<input type="hidden" name = "tId" value="${teacher.tId }">
-		<td>
-			<select name="cId">
-				<c:forEach var="carId" items="${carIdList }">
-					<option value="${carId }">${carId }</option>
-				</c:forEach>
-			</select>
-		</td>
-		<td>
-			<input type="submit" value="确定">
-		</td>
-	</form>
-	</tr>
-</table>
-
-
+</div>
+<script src="${pageContext.request.contextPath}/layui/layui.all.js" charset="utf-8"></script>
+<script>
+;!function(){
+  var layer = layui.layer
+  ,form = layui.form
+  ,element = layui.element;
+ 
+}();
+</script> 
 </body>
 </html>
