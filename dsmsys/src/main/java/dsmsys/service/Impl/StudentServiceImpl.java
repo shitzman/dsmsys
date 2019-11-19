@@ -81,4 +81,10 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.updatetIdBysId(tId, sId);
 	}
 
+	@Override
+	public int updatetIdNullBysId(Integer sId) {
+		// TODO Auto-generated method stub
+		return studentDao.updatetIdNullBysId(sId);
+	}
+
 }

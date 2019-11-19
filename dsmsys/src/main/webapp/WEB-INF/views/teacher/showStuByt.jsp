@@ -136,7 +136,7 @@
 				</c:choose>
 			</td>
 			<td>
-				<a href="#" class="layui-btn layui-btn-sm layui-btn-danger">解除关系</a>
+				<a href="${pageContext.request.contextPath}/admin/relievetcandstu?sId=${stu.sId}&tId=${stu.tId}" class="layui-btn layui-btn-sm layui-btn-danger">解除关系</a>
 			</td>
 		</tr>
 	</c:forEach>

@@ -33,4 +33,7 @@ public interface StudentService {
 	
 	//根据学员id修改学员所跟教练id
 	int updatetIdBysId(Integer tId, Integer sId);
+	
+	//根据学员id更新学员表t_id字段为null（解除教练关系)
+	int updatetIdNullBysId(Integer sId);
 }

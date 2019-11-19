@@ -81,4 +81,8 @@
 		UPDATE student set s_ex_time = #{sExTime} WHERE s_id = #{sId}
 	</update>
 	
+	<update id="updatetIdNullBysId" parameterType="Integer">
+		update student set t_id = null where s_id = #{sId}
+	</update>
+	
 </mapper>

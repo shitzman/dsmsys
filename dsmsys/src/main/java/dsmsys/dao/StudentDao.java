@@ -41,5 +41,8 @@ public interface StudentDao {
 	
 	//根据学员id更新学员所属科目并重置考试时间为null
 	int updatesCurrentBysId(@Param("sCurrent")Integer sCurrent, @Param("sId")Integer sId);
+	
+	//根据学员id更新学员表t_id字段为null（解除教练关系)
+	int updatetIdNullBysId(Integer sId);
 
 }

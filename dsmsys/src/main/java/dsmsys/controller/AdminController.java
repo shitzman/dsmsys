@@ -46,6 +46,14 @@ public class AdminController {
 	@Autowired
 	RemarkService remarkService;
 	
+	//解除学员教练关系
+	@RequestMapping(value="relievetcandstu", method=RequestMethod.GET)
+	public String relieveTeacherAndStu(String sId, String tId, Model model){
+		studentService.updatetIdNullBysId(Integer.parseInt(sId));
+		model.addAttribute("tId", tId);
+		return "redirect:showstubyt";
+	}
+	
 	//修改车辆信息（是否可用状态码，与备注信息）
 	@RequestMapping(value = "toupdatecarstatus", method = RequestMethod.GET)
 	public String toUpdateCarStatus(String cFlag,Model model) {
