@@ -52,6 +52,9 @@
 				<c:when test="${student.sCurrent ==4 }">
 					科目四
 				</c:when>
+				<c:when test="${student.sCurrent >4 }">
+					<span style="color: red">恭喜拿证！</span>
+				</c:when>
 				<c:otherwise>
 					等待管理员审批
 				</c:otherwise>
