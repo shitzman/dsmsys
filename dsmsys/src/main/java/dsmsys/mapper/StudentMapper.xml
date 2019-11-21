@@ -32,15 +32,16 @@
 	
 	<select id="getAllStudent" resultMap="stulinktidmap">
 		select s.*,t.t_id as ttid
-		from student s, teacher t
-		where s.s_current = t.t_subject
+		from student s  LEFT JOIN teacher t
+		ON s.s_current = t.t_subject
 	</select>
 	
 		
 	<select id="getAllStudentByAccount" resultMap="stulinktidmap">
 		select s.*,t.t_id as ttid
-		from student s, teacher t
-		where s_account=#{sAccount} and s.s_current = t.t_subject
+		from student s LEFT JOIN teacher t
+		ON s.s_current = t.t_subject
+		WHERE  s_account= #{sAccount}
 	</select>
 	
 	<insert id="addStudent" parameterType="Student">

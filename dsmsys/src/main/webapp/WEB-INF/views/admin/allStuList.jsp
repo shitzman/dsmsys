@@ -68,11 +68,20 @@
 					<input type="hidden" name="sId" value="${stu.sId }">
 					
 					<td> 
-						<select name="tId" >
-							<c:forEach var="tId" items="${stu.tIdList }">
-							<option value="${tId }">${tId }</option>
-							</c:forEach>
-						</select>
+						<c:choose>
+							<c:when test="${stu.tIdList.size()==0 }">
+								当前科目暂无教练
+							</c:when>
+							
+							<c:otherwise>
+								<select name="tId" >
+									<c:forEach var="tId" items="${stu.tIdList }">
+									<option value="${tId }">${tId }</option>
+									</c:forEach>
+								</select>
+							</c:otherwise>
+						</c:choose>
+						
 					</td>
 					<td><input type="submit" value="确定" class="layui-btn layui-btn-sm"></td>
 				</form>
