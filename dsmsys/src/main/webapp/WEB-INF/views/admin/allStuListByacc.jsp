@@ -33,7 +33,7 @@
 			<th>住址：</th>
 			<th>操作</th>
 		</tr>
-		<c:forEach var="stu" items="${stuListAcc }">
+		<c:forEach var="stu" items="${pageStuListAcc.list }">
 			<tr>
 				<td>${stu.sName }</td>
 				<td>${stu.sSex }</td>
@@ -43,14 +43,34 @@
 				<td><a href="${pageContext.request.contextPath }/admin/ratifystu?sId=${stu.sId }" class="layui-btn layui-btn-sm">批准入学</a></td>
 			</tr>
 		</c:forEach>
+		<tr>
+			<td colspan="6" align="center">
+				<div id="pagenums"></div>
+			</td>
+		</tr>
 	</table>
 
 </div>
 
-<script src="../layui/layui.all.js"></script>
+<script src="${pageContext.request.contextPath}/layui/layui.all.js"></script>
 <script>
 	;!function() {
-		var layer = layui.layer, form = layui.form, element = layui.element;
+		var layer = layui.layer, form = layui.form, element = layui.element,laypage = layui.laypage;
+		  
+		  //执行一个laypage实例
+		  laypage.render({
+		  		elem: 'pagenums' 
+			  ,count: ${pageStuListAcc.getTotal()}
+			  ,limit:${pageStuListAcc.getPageSize()}
+			  ,curr:${pageStuListAcc.getPageNum()}
+			  ,jump: function(obj, first){
+				   
+				    if(!first){
+				      //do something
+				    	location.href="${pageContext.request.contextPath}/admin/showallstubyaccount?pn="+obj.curr;
+				    }
+				  }
+		  });
 	}();
 </script>
 </body>

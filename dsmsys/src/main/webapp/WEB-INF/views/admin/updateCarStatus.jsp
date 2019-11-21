@@ -37,8 +37,8 @@
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					<button class="layui-btn" lay-submit lay-filter="formDemo" onclick="closethis()">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary" onclick="closethis()">关闭</button>
 				</div>
 			</div>
 		</form>
@@ -51,6 +51,10 @@
 	;!function() {
 		var layer = layui.layer, form = layui.form, element = layui.element;
 	}();
+	 function closethis(){
+		var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+		parent.layer.close(index); //再执行关闭
+	 }
 </script>
 </body>
 </html>

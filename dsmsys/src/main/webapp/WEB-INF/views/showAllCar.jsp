@@ -39,6 +39,7 @@ padding:5px;
 				<h4 align="center" style="color: red">${msg }</h4>
 				<h3 align="center">所有车辆列表</h3>
 <c:forEach var="car" items="${carList }">
+	
 	<div class="c_list">
 		<table>
 			<tr>
@@ -66,7 +67,10 @@ padding:5px;
 			</tr>
 			<c:if test="${!empty sessionScope.admin }">
 				<tr>
-					<td colspan="2" align="center"><a href="${pageContext.request.contextPath}/admin/toupdatecarstatus?cFlag=${car.cFlag}" class="layui-btn layui-btn-sm">修改车辆信息</a> </td>
+					<td colspan="2" align="center">
+					<%-- <a href="${pageContext.request.contextPath}/admin/toupdatecarstatus?cFlag=${car.cFlag}" class="layui-btn layui-btn-sm">修改车辆信息</a>  --%>
+					<button data-method="setTop" class="layui-btn layui-btn-sm" onclick="updateCar(${car.cFlag})">修改车辆信息</button>
+					</td>
 					<td colspan="2" align="center"><a href="${pageContext.request.contextPath}/car/deletecar?cFlag=${car.cFlag}" class="layui-btn layui-btn-sm layui-btn-danger">删除该车辆</a></td>
 				</tr>
 			</c:if>
@@ -77,11 +81,32 @@ padding:5px;
 
 
 	
-<script src="../layui/layui.all.js"></script>
+<script src="${pageContext.request.contextPath}/layui/layui.all.js"></script>
 <script>
 	;!function() {
 		var layer = layui.layer, form = layui.form, element = layui.element;
+		
+		 //触发事件
+		  var active = {
+		    setTop: function(){
+		    	
+		    	
+		    }
+		   }
 	}();
+	
+	 function updateCar(cFlag){
+		 layer.open({
+			  type: 2, 
+			  area: ['650px', '500px'],
+			  content: '${pageContext.request.contextPath}/admin/toupdatecarstatus?cFlag='+cFlag //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+			,end:function(){
+			    //do something
+				location.href='${pageContext.request.contextPath }/car/showallcar'
+			  }
+		 });
+     }
+	
 </script>
 </body>
 </html>

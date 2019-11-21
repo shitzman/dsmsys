@@ -221,9 +221,13 @@ public class AdminController {
 	
 	//查询所有已申请但未审批的学员
 	@RequestMapping(value = "/showallstubyaccount", method = RequestMethod.GET)
-	public String ShowAllStuByAccount(Model model) {
+	public String ShowAllStuByAccount(@RequestParam(value="pn",defaultValue="1")Integer pn, Model model) {
+		
+		PageHelper.startPage(pn, 5);
 		List<Student> stuListByAcc = studentService.getAllStudentByAccount(0);//account=0为未审核学员
-		model.addAttribute("stuListAcc", stuListByAcc);
+		
+		PageInfo<Student> pageStuListAcc = new PageInfo<Student>(stuListByAcc,5);
+		model.addAttribute("pageStuListAcc", pageStuListAcc);
 		return "admin/allStuListByacc";
 	} 
 	
@@ -231,10 +235,10 @@ public class AdminController {
 	@RequestMapping(value = "/showallstu", method = RequestMethod.GET)
 	public String showAllStu(@RequestParam(value="pn",defaultValue="1")Integer pn, Model model) {
 		
-		PageHelper.startPage(pn, 3);
+		PageHelper.startPage(pn, 5);
 		List<Student> stuList = studentService.getAllStudentByAccount(1);//account=1为已审核学员
 		
-		PageInfo<Student> pageStuList = new PageInfo<Student>(stuList);
+		PageInfo<Student> pageStuList = new PageInfo<Student>(stuList,5);
 		model.addAttribute("pageStuList", pageStuList);//已在Studnet中绑定学员当前科目可选择教练列表
 		return "admin/allStuList";
 	}
