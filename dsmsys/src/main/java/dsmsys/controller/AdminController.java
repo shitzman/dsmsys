@@ -12,6 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import dsmsys.pojo.Car;
 import dsmsys.pojo.Exammsg;
@@ -225,12 +229,13 @@ public class AdminController {
 	
 	//查询所有已审批学员
 	@RequestMapping(value = "/showallstu", method = RequestMethod.GET)
-	public String showAllStu(Model model) {
+	public String showAllStu(@RequestParam(value="pn",defaultValue="1")Integer pn, Model model) {
 		
+		PageHelper.startPage(pn, 3);
 		List<Student> stuList = studentService.getAllStudentByAccount(1);//account=1为已审核学员
-		//List<Integer> tIdList = teacherService.getAllTeacherId();
-		model.addAttribute("stuList", stuList);//已在Studnet中绑定学员当前科目可选择教练列表
-		//model.addAttribute("tIdList", tIdList);
+		
+		PageInfo<Student> pageStuList = new PageInfo<Student>(stuList);
+		model.addAttribute("pageStuList", pageStuList);//已在Studnet中绑定学员当前科目可选择教练列表
 		return "admin/allStuList";
 	}
 	

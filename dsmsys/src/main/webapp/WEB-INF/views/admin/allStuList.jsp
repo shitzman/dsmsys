@@ -35,7 +35,7 @@
 			<th>学员可分配教练编号：</th>
 			<th>操作</th>
 		</tr>
-		<c:forEach var="stu" items="${stuList }">
+		<c:forEach var="stu" items="${pageStuList.list }">
 			<tr>
 				<td>${stu.sName }</td>
 				<td>${stu.sSex }</td>
@@ -87,6 +87,11 @@
 				</form>
 			</tr>
 		</c:forEach>
+		<tr>
+			<td colspan="9" align="center">
+				<div id="pagenums"></div>
+			</td>
+		</tr>
 	</table>
 
 	
@@ -95,7 +100,25 @@
 <script src="../layui/layui.all.js"></script>
 <script>
 	;!function() {
-		var layer = layui.layer, form = layui.form, element = layui.element;
+		var layer = layui.layer, form = layui.form, element = layui.element,laypage = layui.laypage;
+		  
+		  //执行一个laypage实例
+		  laypage.render({
+		  		elem: 'pagenums' 
+			  ,count: ${pageStuList.getTotal()}
+			  ,limit:${pageStuList.getPageSize()}
+			  ,jump: function(obj, first){
+				    //obj包含了当前分页的所有参数，比如：
+				    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+				    console.log(obj.limit); //得到每页显示的条数
+				    //首次不执行
+				    
+				    if(!first){
+				      //do something
+				    	window.location.href="${pageContext.request.contextPath}/admin/showallstu?pn="+obj.curr;
+				    }
+				  }
+		  });
 	}();
 </script>
 

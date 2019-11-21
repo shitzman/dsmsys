@@ -32,6 +32,20 @@
 				<property name="mapUnderscoreToCamelCase" value="true" />
 			</bean>
 		</property>
+		
+		<property name="plugins">
+		    <array>
+		      <bean class="com.github.pagehelper.PageInterceptor">
+		        <property name="properties">
+		          <!--使用下面的方式配置参数，一行配置一个 -->
+		          <value>
+		            reasonable=true
+		          </value>
+		        </property>
+		      </bean>
+		    </array>
+	  </property>
+		
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

@@ -56,7 +56,7 @@
 </div>
 
 
-<script src="layui/layui.all.js" charset="utf-8"></script>
+<script src="${pageContext.request.contextPath}/layui/layui.all.js" charset="utf-8"></script>
 <script>
 ;!function(){
   var layer = layui.layer
