@@ -23,6 +23,13 @@
 <div class="mianList">
 	<h4 align="center">${msg }</h4>
 	<h3 align="center">所有在校学员列表</h3>
+	<hr>
+	<div align="right">
+		<form action="${pageContext.request.contextPath}/admin/showallstubyalikenameormobile" class="layui-form" method="get">
+			<input type="text" name = "para1" class="layui-input layui-input-inline " style="width: 300px;border-color: yellow;border-radius: 40px;border-bottom-width: 4px" placeholder="在手机号与姓名中模糊搜索">
+			<button class="layui-btn layui-btn-radius layui-btn-warm layui-input-inline" lay-submit lay-filter="formDemo" >搜索</button>
+		</form>
+	</div>
 	<table class="layui-table">
 		<tr>
 			<th>姓名：</th>
@@ -115,10 +122,22 @@
 			  ,limit:${pageStuList.getPageSize()}
 			  ,curr:${pageStuList.getPageNum()}
 			  ,jump: function(obj, first){
-				   
+				  
 				    if(!first){
 				      //do something
-				    	location.href="${pageContext.request.contextPath}/admin/showallstu?pn="+obj.curr;
+				    	//location.href="${pageContext.request.contextPath}/admin/showallstu?pn="+obj.curr;
+				    	//location.href=window.location.href+"pn="+objcurr;
+				    	var path = window.location.href;
+			    		var basePath = path.split("?pn");
+			    		
+			    		if(basePath[0].indexOf("para")!=-1){	//如果有para参数（有两个链接导向这个网页，而且携带参数不同，在这里区分如何截取参数）
+			    			var basePath = path.split("&pn");
+			    			location.href=basePath[0]+"&pn="+obj.curr;
+				    	}else{
+				    		location.href=basePath[0]+"?pn="+obj.curr;
+					    	}
+				    	
+				    	
 				    }
 				  }
 		  });

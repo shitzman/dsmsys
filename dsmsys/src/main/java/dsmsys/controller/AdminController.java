@@ -255,6 +255,18 @@ public class AdminController {
 		return "admin/allStuList";
 	}
 	
+	//按条件查询所有已审批学员（模糊查询名字和手机号）
+		@RequestMapping(value = "/showallstubyalikenameormobile", method = RequestMethod.GET)
+		public String showAllStuByaLikeNameOrMobile(@RequestParam(value="pn",defaultValue="1")Integer pn,String para1, Model model) {
+			
+			PageHelper.startPage(pn, 5);
+			List<Student> stuList = studentService.getAllStudentByAccountLikeNameOrMobile(1, para1);//account=1为已审核学员
+			
+			PageInfo<Student> pageStuList = new PageInfo<Student>(stuList,5);
+			model.addAttribute("pageStuList", pageStuList);//已在Studnet中绑定学员当前科目可选择教练列表
+			return "admin/allStuList";
+		}
+	
 	//导向管理界面
 	@RequestMapping(value = "/manage", method = RequestMethod.GET)
 	public String toManage(HttpSession session, Model model) {

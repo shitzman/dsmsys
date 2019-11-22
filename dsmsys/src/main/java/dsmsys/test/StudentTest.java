@@ -21,6 +21,12 @@ public class StudentTest {
 	StudentDao studentDao;
 	
 	@Test
+	public void getAllStudentByAccountLikeNameOrMobileTest() {
+		List<Student> stuList = studentDao.getAllStudentByAccountLikeNameOrMobile(1, "152247");
+		System.out.println(stuList);
+	}
+	
+	@Test
 	public void ratifyStuTest() {
 		Date now = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

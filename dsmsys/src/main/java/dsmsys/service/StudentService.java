@@ -36,4 +36,7 @@ public interface StudentService {
 	
 	//根据学员id更新学员表t_id字段为null（解除教练关系)
 	int updatetIdNullBysId(Integer sId);
+	
+	//根据用户账户状态（0：不可用，1：管理员审批可用）
+	List<Student> getAllStudentByAccountLikeNameOrMobile(@Param("sAccount")Integer sAccount,@Param("para1")String para1);
 }

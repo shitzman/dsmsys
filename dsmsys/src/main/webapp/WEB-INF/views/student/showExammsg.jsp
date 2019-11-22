@@ -61,7 +61,7 @@
 					</c:when>
 					
 					<c:otherwise>
-						<td><a href="#" class="layui-btn layui-btn-sm layui-btn-danger">删除考试信息</a></td>
+						<td><a href="#" class="layui-btn layui-btn-sm layui-btn-danger">查看考试情况</a></td>
 					</c:otherwise>
 				</c:choose>
 				</tr>

@@ -87,4 +87,10 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.updatetIdNullBysId(sId);
 	}
 
+	@Override
+	public List<Student> getAllStudentByAccountLikeNameOrMobile(Integer sAccount, String para1) {
+		// TODO Auto-generated method stub
+		return studentDao.getAllStudentByAccountLikeNameOrMobile(sAccount, para1);
+	}
+
 }

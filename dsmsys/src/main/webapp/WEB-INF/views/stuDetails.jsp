@@ -22,6 +22,19 @@
 <div class="stumsg">
 <h4 align="center" style="color: red;">${msg }</h4>
 <h4>欢迎您：[ ${student.sName }]</h4>
+<hr><p>当前进度:</p>
+<div class="layui-progress" lay-showPercent="true">
+	<c:choose>
+		<c:when test="${student.sCurrent >4}">
+			<div class="layui-progress-bar layui-bg-red" lay-percent="4/4"></div>
+		</c:when>
+		<c:otherwise>
+			<div class="layui-progress-bar layui-bg-red" lay-percent="${student.sCurrent}/4"></div>
+		</c:otherwise>
+	</c:choose>
+</div>
+<hr>
+		
 <table class="layui-table ">
 	
 	<tr>
@@ -123,10 +136,16 @@
 			</td>
 		</c:if>
 	</tr>
-	
 </table>
 
 </div>
+
+<script src="${pageContext.request.contextPath}/layui/layui.all.js"></script>
+<script>
+	;!function() {
+		var layer = layui.layer, form = layui.form, element = layui.element;
+		 
+	}();
 
 </body>
 </html>
