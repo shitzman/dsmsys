@@ -13,7 +13,7 @@
 	</insert>
 	
 	<select id="getAllExammsg" resultType="Exammsg">
-		select * from exammsg
+		select * from exammsg ORDER BY e_time DESC
 	</select>
 	
 	<select id="getAllExammsgByTime" parameterType="String" resultType="Exammsg">

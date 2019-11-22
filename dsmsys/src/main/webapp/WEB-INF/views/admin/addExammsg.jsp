@@ -25,12 +25,12 @@
 	<table class="layui-table">
 		<tr>
 			<td>考试时间</td>
-			<td><input type = "text" name="eTime" class="layui-input" id="test1"></td><!-- 修改为日期组件 -->
+			<td><input type = "text" name="eTime" required class="layui-input" id="test1"></td><!-- 修改为日期组件 -->
 			
 		</tr>
 		<tr>
 			<td>考试地点</td>
-			<td><input type = "text" name="eAddress" class="layui-input"></td>
+			<td><input type = "text" name="eAddress" required class="layui-input"></td>
 		</tr>
 		<tr>
 			<td>考试科目</td>
@@ -44,10 +44,10 @@
 		</tr>
 		<tr>
 			<td>可报考人数</td>
-			<td><input type="text" name="eAllNum" class="layui-input"></td>
+			<td><input type="text" name="eAllNum" required class="layui-input"></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="添加" class="layui-btn layui-btn-warm"/></td>
+			<td colspan="2"><input type="submit" required value="添加" class="layui-btn layui-btn-warm"/></td>
 		</tr>
 	
 	</table>

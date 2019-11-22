@@ -30,5 +30,14 @@ public class RemarkTest {
 		System.out.println(reList);
 	}
 	
+	@Test
+	public void examRemarkByStuIdTest() {
+		List<Remark> remarkList = remarkDao.examRemarkByStuId(19);
+		for(Remark remark : remarkList) {
+			System.out.println(remark);
+		}
+		
+	}
+	
 	
 }

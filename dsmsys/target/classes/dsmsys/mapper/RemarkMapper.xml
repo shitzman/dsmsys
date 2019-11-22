@@ -45,5 +45,27 @@
 		where s_id=#{sId} and e_id=#{eId} 
 	</update>
 	
+	<resultMap type="Remark" id="remarklinkexammsg">
+		<result property="eId" column="e_id"/>
+		<result property="sId" column="s_id"/>
+		<result property="rRemark" column="r_remark"/>
+		<result property="rScore" column="r_score"/>
+		<result property="rStatus" column="r_status"/>
+		<association property="exammsg" javaType="Exammsg">
+			<result property="eTime" column="e_time"/>
+			<result property="eSubject" column="e_subject"/>
+			<result property="eAddress" column="e_address"/>
+		</association>
+	
+	</resultMap>
+	
+	<select id="examRemarkByStuId" parameterType="Integer" resultMap="remarklinkexammsg">
+		select r.*,e.e_time,e.e_subject,e.e_address
+		from remark r, exammsg e
+		where r.e_id = e.e_id and r.s_id = #{sId}
+	
+	</select>
+	
+	
 	
 </mapper>

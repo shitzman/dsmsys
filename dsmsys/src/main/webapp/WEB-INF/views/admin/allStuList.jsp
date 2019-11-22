@@ -33,7 +33,7 @@
 			<th>当前科目</th>
 			<th>当前分配教练：</th>
 			<th>学员可分配教练编号：</th>
-			<th>操作</th>
+			<td colspan="2" align="center">操作</td>
 		</tr>
 		<c:forEach var="stu" items="${pageStuList.list }">
 			<tr>
@@ -55,6 +55,9 @@
 						</c:when>
 						<c:when test="${stu.sCurrent ==4 }">
 							科目四
+						</c:when>
+						<c:when test="${stu.sCurrent > 4 }">
+							学员已毕业
 						</c:when>
 						<c:otherwise>
 							等待管理员审批
@@ -85,10 +88,13 @@
 					</td>
 					<td><input type="submit" value="确定" class="layui-btn layui-btn-sm"></td>
 				</form>
+				<td>
+					<button  class="layui-btn layui-btn-sm" onclick="stuexam(${stu.sId})">考试详情</button>
+				</td>
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="9" align="center">
+			<td colspan="10" align="center">
 				<div id="pagenums"></div>
 			</td>
 		</tr>
@@ -117,6 +123,14 @@
 				  }
 		  });
 	}();
+
+	 function stuexam(sId){
+		 layer.open({
+			  type: 2, 
+			  area: ['700px', '500px'],
+			  content: '${pageContext.request.contextPath}/admin/showstuexam?sId='+sId 
+		 });
+     }
 </script>
 
 

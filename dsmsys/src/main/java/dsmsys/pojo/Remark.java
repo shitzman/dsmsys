@@ -9,6 +9,7 @@ public class Remark {
 	private String rRemark;
 	private Exammsg exammsg;
 	private Student student;
+	
 	public Integer getsId() {
 		return sId;
 	}
@@ -56,6 +57,5 @@ public class Remark {
 		return "Remark [sId=" + sId + ", eId=" + eId + ", rStatus=" + rStatus + ", rScore=" + rScore + ", rRemark="
 				+ rRemark + ", exammsg=" + exammsg + ", student=" + student + "]";
 	}
-	
 	
 }

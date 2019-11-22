@@ -38,7 +38,7 @@
 			</tr>
 		</c:when>
 		<c:otherwise>
-			<c:forEach var="exam" items="${examList }">
+			<c:forEach var="exam" items="${pageExamList.list }">
 			<tr>	
 				<td>${exam.eId }</td>
 				<td>${exam.eTime }</td>
@@ -66,8 +66,11 @@
 				</c:choose>
 				</tr>
 			</c:forEach>
-		
-		
+			<tr>
+				<td colspan="7" align="center">
+					<div id="epagenums"></div>
+				</td>
+			</tr>
 		</c:otherwise>
 	</c:choose>
 	
@@ -76,10 +79,25 @@
 
 </div>
 
-<script src="../layui/layui.all.js"></script>
+<script src="${pageContext.request.contextPath }/layui/layui.all.js"></script>
 <script>
 	;!function() {
-		var layer = layui.layer, form = layui.form, element = layui.element;
+		var layer = layui.layer, form = layui.form, element = layui.element,laypage = layui.laypage;
+		  
+		  //执行一个laypage实例
+		  laypage.render({
+		  		elem: 'epagenums' 
+			  ,count: ${pageExamList.getTotal()}
+			  ,limit:${pageExamList.getPageSize()}
+			  ,curr:${pageExamList.getPageNum()}
+			  ,jump: function(obj, first){
+				   
+				    if(!first){
+				      //do something
+				    	location.href="${pageContext.request.contextPath }/admin/showexammsg?pn="+obj.curr;
+				    }
+				  }
+		  });
 	}();
 </script>
 </body>

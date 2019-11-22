@@ -16,4 +16,7 @@ public interface RemarkService {
 	
 	//更新学员当前考试记录
 	int updateScoreAndRemarkAndStatus(Remark remark);
+	
+	//根据学员id查询学员的考试记录
+	List<Remark> examRemarkByStuId(Integer sId);
 }

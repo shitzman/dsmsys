@@ -50,6 +50,14 @@ public class AdminController {
 	@Autowired
 	RemarkService remarkService;
 	
+	//根据学员id查询学员历史考试信息
+	@RequestMapping(value = "showstuexam", method = RequestMethod.GET)
+	public String showStuExam(Integer sId, Model model) {
+		List<Remark> remarkList = remarkService.examRemarkByStuId(sId);
+		model.addAttribute("remarkList", remarkList);
+		return "admin/showStuExam";
+	}
+	
 	//解除学员教练关系
 	@RequestMapping(value="relievetcandstu", method=RequestMethod.GET)
 	public String relieveTeacherAndStu(String sId, String tId, Model model){
@@ -188,9 +196,13 @@ public class AdminController {
 	
 	//为管理员显示发布过的所有考试信息
 	@RequestMapping(value="/showexammsg", method=RequestMethod.GET)
-	public String showExammsg(HttpSession session,Model model){
+	public String showExammsg(@RequestParam(value="pn",defaultValue="1")Integer pn, HttpSession session,Model model){
+		
+		PageHelper.startPage(pn, 5);
 		List<Exammsg> examList = exammsgService.getAllExammsg();
-		model.addAttribute("examList", examList);
+		
+		PageInfo<Exammsg> pageExamList = new PageInfo<Exammsg>(examList);
+		model.addAttribute("pageExamList", pageExamList);
 		return "student/showExammsg";
 	}
 	
