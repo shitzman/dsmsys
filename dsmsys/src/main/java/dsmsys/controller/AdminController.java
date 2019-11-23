@@ -50,6 +50,15 @@ public class AdminController {
 	@Autowired
 	RemarkService remarkService;
 	
+	//根据考试Id查询所有参与该考试的学员信息
+	@RequestMapping(value = "getallremarkandstubyeid", method = RequestMethod.GET)
+	public String getAllRemarkAndStuByeId(Integer eId, Model model) {
+		
+		List<Remark> remarkList = remarkService.getAllRemarkAndStuByeId(eId);
+		model.addAttribute("remarkList", remarkList);
+		return "admin/getAllRemarkAndStuByeId";
+	}
+	
 	//根据学员id查询学员历史考试信息
 	@RequestMapping(value = "showstuexam", method = RequestMethod.GET)
 	public String showStuExam(Integer sId, Model model) {

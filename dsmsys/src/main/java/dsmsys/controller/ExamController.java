@@ -12,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import dsmsys.pojo.Exammsg;
 import dsmsys.pojo.Student;
 import dsmsys.service.ExammsgService;
@@ -39,8 +42,10 @@ public class ExamController {
 		String eTime = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		String eSubject = student.getsCurrent()+"";
 		//根据现在时间以及当前学员所属科目展示可约考信息
+		PageHelper.startPage(1, 50);	//该情况数据量不会多，没必要分页，但与管理员查询所有发布的考试信息共用一页，为保持数据格式一致………………
 		List<Exammsg> examList = exammsgService.getAllExammsgByTimeAndSubject(eTime, eSubject);
-		model.addAttribute("examList", examList);
+		PageInfo<Exammsg> pageExamList = new PageInfo<Exammsg>(examList);
+		model.addAttribute("pageExamList", pageExamList);
 		model.addAttribute("sStatus", student.getsStatus());//传递当前用户所属考试状态，用以前端判断控制显示效果
 		return "student/showExammsg";
 	}

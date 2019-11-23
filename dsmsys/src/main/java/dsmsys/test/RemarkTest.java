@@ -39,5 +39,13 @@ public class RemarkTest {
 		
 	}
 	
+	@Test
+	public void getAllRemarkAndStuByeIdTest() {
+		List<Remark> remarkList = remarkDao.getAllRemarkAndStuByeId(3);
+		for(Remark r: remarkList) {
+			System.out.println(r);
+		}
+	}
+	
 	
 }

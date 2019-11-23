@@ -63,9 +63,26 @@
 		select r.*,e.e_time,e.e_subject,e.e_address
 		from remark r, exammsg e
 		where r.e_id = e.e_id and r.s_id = #{sId}
-	
 	</select>
 	
+	<resultMap type="Remark" id="remarkLinkStudent">
+		<result property="eId" column="e_id"/>
+		<result property="sId" column="s_id"/>
+		<result property="rRemark" column="r_remark"/>
+		<result property="rScore" column="r_score"/>
+		<result property="rStatus" column="r_status"/>
+		<association property="student" javaType="Student">
+			<result property="sName" column="s_name"/>
+			<result property="sSex" column="s_sex"/>
+			<result property="sMobile" column="s_mobile"/>
+		</association>
+	</resultMap>
+	
+	<select id="getAllRemarkAndStuByeId" parameterType="Integer" resultMap="remarkLinkStudent">
+		SELECT r.e_id,r.s_id, r.r_score, r.r_status, r.r_remark, s.s_name, s.s_sex, s.s_mobile
+		FROM remark r LEFT JOIN student s ON r.s_id = s.s_id 
+		where r.e_id = #{eId}
+	</select>
 	
 	
 </mapper>

@@ -24,4 +24,7 @@ public interface RemarkDao {
 	
 	//根据学员id查询学员的考试记录
 	List<Remark> examRemarkByStuId(Integer sId);
+	
+	//根据考试编号查询考试记录以及相应学生信息
+	List<Remark> getAllRemarkAndStuByeId(Integer eId);
 }

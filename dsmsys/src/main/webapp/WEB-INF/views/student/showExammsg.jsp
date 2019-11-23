@@ -32,7 +32,7 @@
 		<th>操作</th>
 	</tr>
 	<c:choose>
-		<c:when test="${examList.size()==0 }">
+		<c:when test="${pageExamList.list.size()==0 }">
 			<tr>
 				<td colspan="7" align="center">暂无任何可约考信息</td>
 			</tr>
@@ -61,7 +61,7 @@
 					</c:when>
 					
 					<c:otherwise>
-						<td><a href="#" class="layui-btn layui-btn-sm layui-btn-danger">查看考试情况</a></td>
+						<td><button  onclick="openThisStuByeId(${exam.eId })" class="layui-btn layui-btn-sm layui-btn-danger">查看考试情况</button></td>
 					</c:otherwise>
 				</c:choose>
 				</tr>
@@ -98,7 +98,17 @@
 				    }
 				  }
 		  });
+
+		 
 	}();
+	 function openThisStuByeId(eId){
+		   layer.open({
+			  type: 2, 
+			  type: 2, 
+			  area: ['900px', '400px'],
+			  content: '${pageContext.request.contextPath }/admin/getallremarkandstubyeid?eId='+eId //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+			});  
+	};
 </script>
 </body>
 </html>

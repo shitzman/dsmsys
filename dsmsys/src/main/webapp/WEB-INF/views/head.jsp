@@ -23,7 +23,7 @@
 			<ul class="layui-nav">
 				<li class="layui-nav-item"><a
 					href="${pageContext.request.contextPath}">主页</a></li>
-				<li class="layui-nav-item layui-this"><a
+				<li class="layui-nav-item"><a
 					href="${pageContext.request.contextPath}/exam/showexammsg">可预约考试信息</a></li>
 				<li class="layui-nav-item"><a
 					href="${pageContext.request.contextPath }/teacher/showallteacher">学校教练情况</a></li>

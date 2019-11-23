@@ -34,5 +34,10 @@ public class RemarkServiceImpl implements RemarkService {
 		// TODO Auto-generated method stub
 		return remarkDao.examRemarkByStuId(sId);
 	}
+	@Override
+	public List<Remark> getAllRemarkAndStuByeId(Integer eId) {
+		// TODO Auto-generated method stub
+		return remarkDao.getAllRemarkAndStuByeId(eId);
+	}
 
 }
