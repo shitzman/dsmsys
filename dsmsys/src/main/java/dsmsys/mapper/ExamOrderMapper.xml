@@ -13,4 +13,8 @@
 	<delete id="deleteExamOrderBySId" parameterType="Integer">
 		DELETE from examorder WHERE s_id = #{sId}
 	</delete>
+	
+	<select id="countStuByExamOrder" resultType="int">
+		SELECT COUNT(*) FROM examorder
+	</select>
 </mapper>

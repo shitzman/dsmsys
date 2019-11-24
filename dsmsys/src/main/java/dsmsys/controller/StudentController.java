@@ -1,5 +1,8 @@
 package dsmsys.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -93,7 +96,19 @@ public class StudentController {
 				cookie.setMaxAge(60 * 30);
 				cookie.setPath("/dsmsys");
 				resp.addCookie(cookie);
-
+				
+				/***
+				 * 数组中存有以下数据
+				 * 统计在校学员所处科目人数
+				 * 统计各科目所有历史考试中，过关、不过关的人数
+				 * 统计学员账户account=0的数量
+				 * 统计学生约考数量
+				 * 统计表中所有字段status为0，即处于代考状态的记录数量
+				 */
+				int[][] managesomeCountArray = studentService.sumStuBySubjectArray();
+				model.addAttribute("managesomeCountArray", managesomeCountArray);
+				/*******************/
+				
 				model.addAttribute("admin", admin);
 				return "admin/manage";
 			} else {

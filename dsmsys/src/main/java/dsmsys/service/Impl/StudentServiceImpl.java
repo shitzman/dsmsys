@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dsmsys.dao.ExamOrderDao;
+import dsmsys.dao.RemarkDao;
 import dsmsys.dao.StudentDao;
 import dsmsys.pojo.Student;
+import dsmsys.pojo.SumStuBySubject;
 import dsmsys.service.StudentService;
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -17,6 +19,8 @@ public class StudentServiceImpl implements StudentService {
 	StudentDao studentDao;
 	@Autowired
 	ExamOrderDao examOrderDao;
+	@Autowired
+	RemarkDao remarkDao;
 	@Override
 	public Student getStudentBySid(Integer sId) {
 		// TODO Auto-generated method stub
@@ -92,5 +96,30 @@ public class StudentServiceImpl implements StudentService {
 		// TODO Auto-generated method stub
 		return studentDao.getAllStudentByAccountLikeNameOrMobile(sAccount, para1);
 	}
-
+	
+	
+	/***
+	 * 数组中存有以下数据
+	 * 统计在校学员所处科目人数
+	 * 统计各科目所有历史考试中，过关、不过关的人数
+	 * 统计学员账户account=0的数量
+	 * 统计学生约考数量
+	 * 统计表中所有字段status为0，即处于代考状态的记录数量
+	 */
+	@Override
+	public int[][] sumStuBySubjectArray() {
+		// TODO Auto-generated method stub
+		List<SumStuBySubject> sumStuList = studentDao.countStuBysCurrent();
+		int[][] managesomeCountArray = new int[5][4];
+		for(int i=0; i<4; i++) {
+			managesomeCountArray[0][i] = sumStuList.get(i).getSubject();
+			managesomeCountArray[1][i] = sumStuList.get(i).getSum();
+			managesomeCountArray[2][i] = remarkDao.countRemarkPassOrFailBySubject(i+1, 1);//科目i+1通关人数；
+			managesomeCountArray[3][i] = remarkDao.countRemarkPassOrFailBySubject(i+1, 2);//科目i+1挂科人数；
+		}
+		managesomeCountArray[4][0] = studentDao.countStuByAccount(0);//0为管理员未审核的学员数量
+		managesomeCountArray[4][1] = examOrderDao.countStuByExamOrder();//examorder表中记录数量即为学生约考数量；
+		managesomeCountArray[4][2] = remarkDao.countRemarkBystatus(0);//统计表中所有字段status为0，即处于代考状态的记录数量
+		return managesomeCountArray;
+	}
 }

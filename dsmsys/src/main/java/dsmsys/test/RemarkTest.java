@@ -19,6 +19,12 @@ public class RemarkTest {
 	RemarkDao remarkDao;
 	
 	@Test
+	public void countRemarkPassOrFailBySubject() {
+		System.out.println(remarkDao.countRemarkPassOrFailBySubject(1,2));
+	}
+	
+	
+	@Test
 	public void getRemarkBySidTest() {
 		List<Remark> remarkList = remarkDao.getRemarkBySId(3);
 		System.out.println(remarkList);

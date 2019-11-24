@@ -95,4 +95,17 @@
 		update student set t_id = null where s_id = #{sId}
 	</update>
 	
+	<select id="countStuBysCurrent" resultType="SumStuBySubject">
+		SELECT s_current subject,COUNT(*) as sum
+		FROM student
+		WHERE s_current BETWEEN 1 and 4
+		GROUP BY s_current
+	</select>
+	
+	<select id="countStuByAccount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*)
+		FROM student
+		WHERE s_account = #{account}
+	</select>
+	
 </mapper>

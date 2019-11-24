@@ -27,4 +27,10 @@ public interface RemarkDao {
 	
 	//根据考试编号查询考试记录以及相应学生信息
 	List<Remark> getAllRemarkAndStuByeId(Integer eId);
+	
+	//查询当前科目所有历史考试中，过关、不过关的人数
+	int countRemarkPassOrFailBySubject(@Param("subject")Integer subject,@Param("status")Integer status);
+	
+	//统计表中所有字段status为0，即处于代考状态的记录数量
+	int countRemarkBystatus(Integer status);
 }

@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import dsmsys.pojo.Remark;
 import dsmsys.pojo.Student;
+import dsmsys.pojo.SumStuBySubject;
 
 public interface StudentDao {
 
@@ -45,7 +45,13 @@ public interface StudentDao {
 	//根据学员id更新学员表t_id字段为null（解除教练关系)
 	int updatetIdNullBysId(Integer sId);
 	
-	//根据用户账户状态（0：不可用，1：管理员审批可用）
+	//根据用户账户状态（0：不可用，1：管理员审批可用）在用户用和手机号中模糊搜索
 	List<Student> getAllStudentByAccountLikeNameOrMobile(@Param("sAccount")Integer sAccount,@Param("para1")String para1);
+	
+	//统计在校学员所处科目人数
+	List<SumStuBySubject> countStuBysCurrent();
+	
+	//统计学员账户状态（account=0/1）的数量
+	int countStuByAccount(Integer account);
 
 }

@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import dsmsys.dao.StudentDao;
 import dsmsys.pojo.Student;
+import dsmsys.pojo.SumStuBySubject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:springapp-config.xml")
@@ -19,6 +20,25 @@ public class StudentTest {
 	
 	@Autowired
 	StudentDao studentDao;
+	
+	@Test
+	public void SumStuBySubjectTest() {
+	
+		List<SumStuBySubject> sumStuList = studentDao.countStuBysCurrent();
+		int[][] sumStuArray = new int[2][4];
+		for(int i=0; i<4; i++) {
+			sumStuArray[0][i] = sumStuList.get(i).getSubject();
+			sumStuArray[1][i] = sumStuList.get(i).getSum();
+		}
+		
+		for(int i=0; i<4; i++) {
+			System.out.print(sumStuArray[0][i]+"---");
+		}
+		System.out.println();
+		for(int i=0; i<4; i++) {
+			System.out.print(sumStuArray[1][i]+"---");
+		}
+	}
 	
 	@Test
 	public void getAllStudentByAccountLikeNameOrMobileTest() {

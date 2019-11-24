@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -279,6 +280,18 @@ public class AdminController {
 	//导向管理界面
 	@RequestMapping(value = "/manage", method = RequestMethod.GET)
 	public String toManage(HttpSession session, Model model) {
+		
+		/***
+		 * 数组中存有以下数据
+		 * 统计在校学员所处科目人数
+		 * 统计各科目所有历史考试中，过关、不过关的人数
+		 * 统计学员账户account=0的数量
+		 * 统计学生约考数量
+		 * 统计表中所有字段status为0，即处于代考状态的记录数量
+		 */
+		int[][] managesomeCountArray = studentService.sumStuBySubjectArray();
+		model.addAttribute("managesomeCountArray", managesomeCountArray);
+		/*******************/
 		
 		return "admin/manage";
 	}

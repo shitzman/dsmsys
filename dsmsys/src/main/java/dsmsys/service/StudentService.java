@@ -1,6 +1,7 @@
 package dsmsys.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -39,4 +40,14 @@ public interface StudentService {
 	
 	//根据用户账户状态（0：不可用，1：管理员审批可用）
 	List<Student> getAllStudentByAccountLikeNameOrMobile(@Param("sAccount")Integer sAccount,@Param("para1")String para1);
+	
+	/***
+	 * 数组中存有以下数据
+	 * 统计在校学员所处科目人数
+	 * 统计各科目所有历史考试中，过关、不过关的人数
+	 * 统计学员账户account=0的数量
+	 * 统计学生约考数量
+	 * 统计表中所有字段status为0，即处于代考状态的记录数量
+	 */
+	int[][] sumStuBySubjectArray();
 }

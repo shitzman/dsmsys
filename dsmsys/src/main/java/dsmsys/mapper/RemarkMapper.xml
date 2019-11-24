@@ -84,5 +84,16 @@
 		where r.e_id = #{eId}
 	</select>
 	
+	<select id="countRemarkPassOrFailBySubject" parameterType="Integer" resultType="int">
+		SELECT COUNT(*)
+		FROM exammsg e LEFT JOIN remark r ON e.e_id = r.e_id
+		WHERE e.e_subject = #{subject} and r.r_status = #{status}
+	</select>
+	
+	<select id="countRemarkBystatus" parameterType="Integer" resultType="int">
+		SELECT COUNT(8)
+		FROM remark
+		WHERE r_status = #{status}
+	</select>
 	
 </mapper>

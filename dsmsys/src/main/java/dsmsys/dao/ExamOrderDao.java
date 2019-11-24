@@ -16,4 +16,7 @@ public interface ExamOrderDao {
 	//根据学员id删除预约表的信息
 	int deleteExamOrderBySId(Integer sId);
 	
+	//统计学生约考数量
+	int countStuByExamOrder();
+	
 }
