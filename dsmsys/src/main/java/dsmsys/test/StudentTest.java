@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import dsmsys.dao.StudentDao;
 import dsmsys.pojo.Student;
 import dsmsys.pojo.SumStuBySubject;
+import dsmsys.service.StudentService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:springapp-config.xml")
@@ -20,6 +21,14 @@ public class StudentTest {
 	
 	@Autowired
 	StudentDao studentDao;
+	
+	@Autowired
+	StudentService studentService;
+	
+	@Test
+	public void sumStuBySubjectArrayTest(){
+		int[][] managesomeCountArray = studentService.sumStuBySubjectArray();
+	}
 	
 	@Test
 	public void SumStuBySubjectTest() {

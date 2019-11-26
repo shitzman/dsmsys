@@ -1,5 +1,6 @@
 package dsmsys.service.Impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,11 +110,20 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public int[][] sumStuBySubjectArray() {
 		// TODO Auto-generated method stub
-		List<SumStuBySubject> sumStuList = studentDao.countStuBysCurrent();
+		List<SumStuBySubject> baseSumStuList = new ArrayList<SumStuBySubject>();
+		for(int i=0; i<4; i++){				//初始化各个科目为0
+			baseSumStuList.add(new SumStuBySubject(i,0));
+		}
+		List<SumStuBySubject> sumStuList = studentDao.countStuBysCurrent();	//获得数据库中的实际人数
+		
+		for(SumStuBySubject sj: sumStuList){
+			baseSumStuList.get(sj.getSubject()-1).setSum(sj.getSum());	//将实际人数覆盖初始人数，从零计数，所以科目减一
+		}
+		
 		int[][] managesomeCountArray = new int[5][4];
 		for(int i=0; i<4; i++) {
-			managesomeCountArray[0][i] = sumStuList.get(i).getSubject();
-			managesomeCountArray[1][i] = sumStuList.get(i).getSum();
+			managesomeCountArray[0][i] = baseSumStuList.get(i).getSubject();
+			managesomeCountArray[1][i] = baseSumStuList.get(i).getSum();
 			managesomeCountArray[2][i] = remarkDao.countRemarkPassOrFailBySubject(i+1, 1);//科目i+1通关人数；
 			managesomeCountArray[3][i] = remarkDao.countRemarkPassOrFailBySubject(i+1, 2);//科目i+1挂科人数；
 		}

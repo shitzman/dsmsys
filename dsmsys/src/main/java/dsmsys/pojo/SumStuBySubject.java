@@ -4,6 +4,20 @@ public class SumStuBySubject {
 	
 	private Integer subject;
 	private Integer sum;
+	
+	
+	
+	
+	
+	public SumStuBySubject() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public SumStuBySubject(Integer subject, Integer sum) {
+		super();
+		this.subject = subject;
+		this.sum = sum;
+	}
 	public Integer getSubject() {
 		return subject;
 	}
