@@ -126,10 +126,27 @@
 		</c:otherwise>
 	</c:choose>
 
-<a href="regstudent">学员申请</a>
-<a href="login">登录</a>
-<a href="${pageContext.request.contextPath }/teacher/showallteacher">查看学校教练情况</a>
-<a href="${pageContext.request.contextPath }/car/showallcar">查看学校车辆情况</a>
+<table class="layui-table">
+<tr>
+	<td><h1 align="center" style="margin-top: 200px">驾校管理系统</h1></td>
+</tr>
+<tr>
+	<td><h2 align="center" style="margin-top: 50px"><a href="regstudent">-立即加入-</a></h2></td>
+</tr>
+<tr>
+	<td><h3 align="center" style="margin-top: 20px"><a href="login">-去登录-</a></h3></td>
+</tr>
+<tr>
+	<td><h3 align="center" style="margin-top: 50px"><a href="${pageContext.request.contextPath }/teacher/showallteacher">查看学校教练情况</a></h3>
+	</td>
+</tr>
+<tr>
+	<td><h3 align="center" ><a href="${pageContext.request.contextPath }/car/showallcar">查看学校车辆情况</a></h3>
+	</td>
+</tr>
+</table>
+
+
 
 <script src="layui/layui.all.js" charset="utf-8"></script>
 <script>
