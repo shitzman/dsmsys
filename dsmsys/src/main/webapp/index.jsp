@@ -31,7 +31,7 @@
 					href="${pageContext.request.contextPath }/car/showallcar">学校车辆情况</a></li>
 				<li class="layui-nav-item"><a
 					href="${pageContext.request.contextPath }/showexamorder">已预约考试信息</a></li>
-				<li class="layui-nav-item userRight"><a href=""${pageContext.request.contextPath }/studetails""><img
+				<li class="layui-nav-item userRight"><a href="${pageContext.request.contextPath }/studetails"><img
 						src="${pageContext.request.contextPath }/img/xy.png" class="layui-nav-img">${sessionScope.student.sName }</a>
 					<dl class="layui-nav-child">
 						<dd>
@@ -99,7 +99,7 @@
 						</dd>
 					</dl></li>
 
-				<li class="layui-nav-item userRight"><a href=""${pageContext.request.contextPath }/admin/manage""><img
+				<li class="layui-nav-item userRight"><a href="${pageContext.request.contextPath }/admin/manage"><img
 						src="${pageContext.request.contextPath }/img/gl.png" class="layui-nav-img">欢迎您：${sessionScope.admin.admName }--【管理员】</a>
 					<dl class="layui-nav-child">
 						<dd>

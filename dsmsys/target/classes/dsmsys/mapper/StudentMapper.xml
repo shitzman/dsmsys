@@ -30,6 +30,22 @@
 	
 	</resultMap>
 	
+	<resultMap type="Student" id="stulinktidmap2">
+		<result property="sId" column="s_id"/>
+		<result property="sNumber" column="s_number"/>
+		<result property="sName" column="s_name"/>
+		<result property="sSex" column="s_sex"/>
+		<result property="tId" column="t_id"/> 
+		<result property="sMobile" column="s_mobile"/>
+		<result property="sCurrent" column="s_current"/>
+		<result property="sAccount" column="s_account"/>
+		<result property="sPassword" column="s_password"/>
+		<result property="sStatus" column="s_status"/>
+		<result property="sRegTime" column="s_regTime"/>
+		<result property="sExTime" column="s_exTime"/>
+		<result property="sAddress" column="s_address"/>
+	</resultMap>
+	
 	<select id="getAllStudent" resultMap="stulinktidmap">
 		select s.*,t.t_id as ttid
 		from student s  LEFT JOIN teacher t
@@ -37,19 +53,29 @@
 	</select>
 	
 		
-	<select id="getAllStudentByAccount" resultMap="stulinktidmap">
+	<!-- <select id="getAllStudentByAccount" resultMap="stulinktidmap">
 		select s.*,t.t_id as ttid
 		from student s LEFT JOIN teacher t
 		ON s.s_current = t.t_subject
 		WHERE  s_account= #{sAccount}
+	</select> -->
+	<select id="getAllStudentByAccount" resultMap="stulinktidmap2">
+		select *
+		from student
+		WHERE  s_account= #{sAccount}
+	</select>
+	
+	<select id="selecttIdsBytSubject" parameterType="Integer" resultType="Integer">
+		select t_id
+		from teacher
+		WHERE t_subject = #{tSubject}
 	</select>
 	
 	
-	<select id="getAllStudentByAccountLikeNameOrMobile" resultMap="stulinktidmap">
+	<select id="getAllStudentByAccountLikeNameOrMobile" resultMap="stulinktidmap2">
 		 <bind name="pattern" value="'%' + para1 + '%'" />
-		select s.*,t.t_id as ttid
-		from student s LEFT JOIN teacher t
-		ON s.s_current = t.t_subject
+		select *
+		from student
 		WHERE  s_account= #{sAccount} and (s_name LIKE #{pattern} or s_mobile LIKE #{pattern}) 
 	</select>
 	

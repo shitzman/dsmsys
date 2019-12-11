@@ -82,7 +82,7 @@ public class TeacherController {
 				int a = (int) (Math.random()*10000);
 				imgName = a+tImgFile.getOriginalFilename();//链接随机数防止文件名重复
 				//获取项目在当前机器上的真实绝对路径，将上传文件储存在项目的img文件夹中；
-				tImgFile.transferTo(new File(session.getServletContext().getRealPath("/")+"\\img\\"+imgName));
+				tImgFile.transferTo(new File(session.getServletContext().getRealPath("/")+"/img/"+imgName));
 				teacher.settImg(imgName);//将文件路径存入数据库
 			} catch (IllegalStateException e) {
 				// TODO Auto-generated catch block

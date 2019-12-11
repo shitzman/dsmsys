@@ -53,5 +53,10 @@ public interface StudentDao {
 	
 	//统计学员账户状态（account=0/1）的数量
 	int countStuByAccount(Integer account);
+	
+	//根据科目查询可选教练id列表
+		List<Integer> selecttIdsBytSubject(Integer tSubject);
+	
+	
 
 }

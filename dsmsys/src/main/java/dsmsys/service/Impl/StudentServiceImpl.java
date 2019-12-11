@@ -49,7 +49,11 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<Student> getAllStudentByAccount(Integer sAccount) {
 		// TODO Auto-generated method stub
-		return studentDao.getAllStudentByAccount(sAccount);
+		List<Student> stuList = studentDao.getAllStudentByAccount(sAccount);
+		for(int i=0; i<stuList.size(); i++){
+			stuList.get(i).settIdList(studentDao.selecttIdsBytSubject(stuList.get(i).getsCurrent()));
+		}
+		return stuList;
 	}
 
 	@Override
@@ -95,7 +99,11 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<Student> getAllStudentByAccountLikeNameOrMobile(Integer sAccount, String para1) {
 		// TODO Auto-generated method stub
-		return studentDao.getAllStudentByAccountLikeNameOrMobile(sAccount, para1);
+		List<Student> stuList = studentDao.getAllStudentByAccountLikeNameOrMobile(sAccount, para1);
+		for(int i=0; i<stuList.size(); i++){
+			stuList.get(i).settIdList(studentDao.selecttIdsBytSubject(stuList.get(i).getsCurrent()));
+		}
+		return stuList;
 	}
 	
 	
